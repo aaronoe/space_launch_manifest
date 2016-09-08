@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Text color for the details of the launch in the list item -->
+    <color name="textColorLaunchDetails">#B4BAC0</color>
+
+    <!-- Text color for the location of the launch in the list item -->
+    <color name="textColorLaunchLocation">#2B3D4D</color>
+
+    <!-- Color for an probability between .0 and .2 -->
+    <color name="probability1">#4A7BA7</color>
 </resources>
