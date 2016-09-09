@@ -9,7 +9,7 @@
     android:paddingStart="16dp">
 
     <TextView
-        android:id="@+id/magnitude"
+        android:id="@+id/probability"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_gravity="center_vertical"
@@ -30,7 +30,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/location_offset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -39,10 +38,11 @@
             android:textAllCaps="true"
             android:textColor="@color/textColorLaunchDetails"
             android:textSize="12sp"
-            tools:text="30km S of" />
+            tools:text="30km S of"
+            android:id="@+id/launch_title" />
 
         <TextView
-            android:id="@+id/primary_location"
+            android:id="@+id/mission_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
