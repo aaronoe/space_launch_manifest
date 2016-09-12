@@ -1,11 +1,23 @@
 package com.example.android.spacelaunchmanifest;
 
+import android.app.LoaderManager;
+import android.content.Context;
+import android.content.Loader;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,32 +26,96 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<LaunchItem>> {
 
     private LaunchArrayAdapter mAdapter;
 
-    private static final String SAMPLE_JSON = "{\"total\":5,\"launches\":[{\"id\":862,\"name\":\"Long March 2F\\/G | Tiangong-2\",\"windowstart\":\"September 15, 2016 00:00:00 UTC\",\"windowend\":\"September 20, 2016 23:59:59 UTC\",\"net\":\"September 15, 2016 00:00:00 UTC\",\"wsstamp\":0,\"westamp\":0,\"netstamp\":0,\"isostart\":\"20160915T000000Z\",\"isoend\":\"20160920T235959Z\",\"isonet\":\"20160915T000000Z\",\"status\":2,\"inhold\":0,\"tbdtime\":1,\"vidURLs\":[],\"vidURL\":null,\"infoURLs\":[],\"infoURL\":null,\"holdreason\":null,\"failreason\":null,\"tbddate\":0,\"probability\":-1,\"hashtag\":null,\"location\":{\"pads\":[{\"id\":8,\"name\":\"Launch Area 4 (SLS-1 \\/ 921), Jiuquan\",\"infoURL\":\"\",\"wikiURL\":\"https:\\/\\/en.wikipedia.org\\/wiki\\/Jiuquan_Launch_Area_4\",\"mapURL\":\"https:\\/\\/www.google.com\\/maps\\/place\\/40%C2%B057'29.1%22N+100%C2%B017'28.3%22E\\/@40.958093,100.288994,676m\\/data=!3m2!1e3!4b1!4m5!3m4!1s0x0:0x0!8m2!3d40.958093!4d100.291188?hl=en\",\"latitude\":\"40.958093000000000\",\"longitude\":\"100.291188000000000\",\"agencies\":[{\"id\":17,\"name\":\"China National Space Administration\",\"abbrev\":\"CNSA\",\"countryCode\":\"CHN\",\"type\":1,\"infoURL\":\"http:\\/\\/www.cnsa.gov.cn\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/China_National_Space_Administration\",\"infoURLs\":[]},{\"id\":88,\"name\":\"China Academy of Space Technology\",\"abbrev\":\"CASC\",\"countryCode\":\"CHN\",\"type\":3,\"infoURL\":\"http:\\/\\/www.cast.cn\\/CastEn\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/China_Academy_of_Space_Technology\",\"infoURLs\":[]}]}],\"id\":1,\"name\":\"Jiuquan\",\"infoURL\":\"\",\"wikiURL\":\"\",\"countryCode\":\"CHN\"},\"rocket\":{\"id\":111,\"name\":\"Long March 2F\\/G\",\"configuration\":\"F\\/G\",\"familyname\":\"Long March 2\",\"agencies\":[],\"imageURL\":\"https:\\/\\/s3.amazonaws.com\\/launchlibrary\\/RocketImages\\/placeholder_1920.png\",\"imageSizes\":[320,480,640,720,768,800,960,1024,1080,1280,1440,1920]},\"missions\":[{\"id\":340,\"name\":\"Tiangong-2\",\"description\":\"China's second space station, Tiangong-2 is tasked to verify key technologies such as cargo transportation, on-orbit propellant resupply, and a medium-term stay of astronauts. It will also carry an array of scientific experiments, and will be equipped with a robotic arm to help the assembly and maintenance of the station.\",\"type\":5,\"typeName\":\"Human Exploration\"}]},{\"id\":1063,\"name\":\"Vega | Per\\u00faSAT-1 \\/ SkySat x 4\",\"windowstart\":\"September 16, 2016 01:43:35 UTC\",\"windowend\":\"September 16, 2016 01:43:35 UTC\",\"net\":\"September 16, 2016 01:43:35 UTC\",\"wsstamp\":1473990215,\"westamp\":1473990215,\"netstamp\":1473990215,\"isostart\":\"20160916T014335Z\",\"isoend\":\"20160916T014335Z\",\"isonet\":\"20160916T014335Z\",\"status\":1,\"inhold\":0,\"tbdtime\":0,\"vidURLs\":[\"http:\\/\\/www.arianespace.com\\/mission\\/vega-flight-vv07\\/\"],\"vidURL\":null,\"infoURLs\":[\"http:\\/\\/www.arianespace.com\\/wp-content\\/uploads\\/2016\\/09\\/VV07-launchkit-GB-2a.pdf\"],\"infoURL\":null,\"holdreason\":null,\"failreason\":null,\"tbddate\":0,\"probability\":-1,\"hashtag\":null,\"location\":{\"pads\":[{\"id\":18,\"name\":\"Ariane Launch Area 1, Kourou\",\"infoURL\":\"http:\\/\\/www.esa.int\\/Our_Activities\\/Launchers\\/Europe_s_Spaceport\\/Europe_s_Spaceport2\",\"wikiURL\":\"https:\\/\\/en.wikipedia.org\\/wiki\\/ELA-1\",\"mapURL\":\"https:\\/\\/www.google.com\\/maps\\/?q=5.239000000000000,-52.775000000000000\",\"latitude\":\"5.236000000000000\",\"longitude\":\"-52.775000000000000\",\"agencies\":[{\"id\":115,\"name\":\"Arianespace\",\"abbrev\":\"ASA\",\"countryCode\":\"FRA,DEU,ITA,BEL,CHE,SWE,ESP,NLD,NOR,DEN,IND\",\"type\":3,\"infoURL\":\"http:\\/\\/www.arianespace.com\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/Arianespace\",\"infoURLs\":[]}]}],\"id\":3,\"name\":\"Kourou, French Guiana\",\"infoURL\":\"\",\"wikiURL\":\"\",\"countryCode\":\"FRA\"},\"rocket\":{\"id\":18,\"name\":\"Vega\",\"configuration\":\"\",\"familyname\":\"Vega\",\"agencies\":[{\"id\":159,\"name\":\"Avio S.p.A\",\"abbrev\":\"Avio\",\"countryCode\":\"ITA\",\"type\":3,\"infoURL\":\"http:\\/\\/www.aviogroup.com\\/en\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/Avio\",\"infoURLs\":[]}],\"imageURL\":\"https:\\/\\/s3.amazonaws.com\\/launchlibrary\\/RocketImages\\/placeholder_1920.png\",\"imageSizes\":[320,480,640,720,768,800,960,1024,1080,1280,1440,1920]},\"missions\":[{\"id\":341,\"name\":\"Per\\u00faSAT-1 \\/ SkySat x 4\",\"description\":\"Launch VV07 from Arianespace will launch 5 earth imaging satellites into a sun-synchronous orbit. Per\\u00faSAT-1 weighs 450kg and will be able to capture images with a resolution of 70cm. The smaller Skybox satellites, each weighing 120kg, will be able to achieve a resolution of approximately 1 meter.\",\"type\":1,\"typeName\":\"Earth Science\"}]},{\"id\":763,\"name\":\"Atlas V 401 | WorldView-4\",\"windowstart\":\"September 16, 2016 18:30:00 UTC\",\"windowend\":\"September 16, 2016 18:44:00 UTC\",\"net\":\"September 16, 2016 18:30:00 UTC\",\"wsstamp\":1474050600,\"westamp\":1474051440,\"netstamp\":1474050600,\"isostart\":\"20160916T183000Z\",\"isoend\":\"20160916T184400Z\",\"isonet\":\"20160916T183000Z\",\"status\":1,\"inhold\":0,\"tbdtime\":0,\"vidURLs\":[\"http:\\/\\/www.ulalaunch.com\\/webcast\"],\"vidURL\":null,\"infoURLs\":[],\"infoURL\":null,\"holdreason\":null,\"failreason\":null,\"tbddate\":0,\"probability\":-1,\"hashtag\":null,\"location\":{\"pads\":[{\"id\":90,\"name\":\"Space Launch Complex 3E, Vandenberg AFB, CA\",\"infoURL\":\"\",\"wikiURL\":\"\",\"mapURL\":\"http:\\/\\/maps.google.com\\/maps?f=q&amp;hl=en&amp;q=34.640+N,+120.5895+W&amp;ie=UTF8&amp;z=17&amp;ll=34.640905,-120.590401&amp;spn=0.003946,0.010815&amp;t=k&amp;om=0&amp;iwloc=addr\",\"latitude\":\"34.640000000000000\",\"longitude\":\"-120.589500000000000\",\"agencies\":[{\"id\":161,\"name\":\"United States Air Force\",\"abbrev\":\"USAF\",\"countryCode\":\"USA\",\"type\":1,\"infoURL\":\"http:\\/\\/www.af.mil\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/United_States_Air_Force\",\"infoURLs\":[]}]}],\"id\":18,\"name\":\"Vandenberg AFB, CA, USA\",\"infoURL\":\"\",\"wikiURL\":\"\",\"countryCode\":\"USA\"},\"rocket\":{\"id\":26,\"name\":\"Atlas V 401\",\"configuration\":\"401\",\"familyname\":\"Atlas\",\"agencies\":[{\"id\":82,\"name\":\"Lockheed Martin\",\"abbrev\":\"LMT\",\"countryCode\":\"USA\",\"type\":3,\"infoURL\":\"http:\\/\\/www.lockheedmartin.com\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/Lockheed_Martin\",\"infoURLs\":[]},{\"id\":124,\"name\":\"United Launch Alliance\",\"abbrev\":\"ULA\",\"countryCode\":\"USA\",\"type\":3,\"infoURL\":\"http:\\/\\/www.ulalaunch.com\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/United_Launch_Alliance\",\"infoURLs\":[]},{\"id\":106,\"name\":\"General Dynamics\",\"abbrev\":\"GD\",\"countryCode\":\"USA\",\"type\":3,\"infoURL\":\"http:\\/\\/www.gd.com\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/General_Dynamics\",\"infoURLs\":[]}],\"imageSizes\":[320,480,640,720,768,800,960,1024,1080,1280,1440,1920,2560],\"imageURL\":\"https:\\/\\/s3.amazonaws.com\\/launchlibrary\\/RocketImages\\/Atlas+V+401_2560.jpg\"},\"missions\":[{\"id\":314,\"name\":\"WorldView-4\",\"description\":\"WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit. Satellite will provide high-resolution imagery in panchromatic and multispectral modes.\",\"type\":1,\"typeName\":\"Earth Science\"}]},{\"id\":775,\"name\":\"Antares 230 | Cygnus CRS OA-5 (S.S. Alan Poindexter)\",\"windowstart\":\"September 20, 2016 00:00:00 UTC\",\"windowend\":\"September 20, 2016 00:00:00 UTC\",\"net\":\"September 20, 2016 00:00:00 UTC\",\"wsstamp\":0,\"westamp\":0,\"netstamp\":0,\"isostart\":\"20160920T000000Z\",\"isoend\":\"20160920T000000Z\",\"isonet\":\"20160920T000000Z\",\"status\":2,\"inhold\":0,\"tbdtime\":1,\"vidURLs\":[],\"vidURL\":null,\"infoURLs\":[\"http:\\/\\/www.orbitalatk.com\\/news-room\\/feature-stories\\/OA5-Mission-Page\\/default.aspx\"],\"infoURL\":null,\"holdreason\":null,\"failreason\":null,\"tbddate\":1,\"probability\":-1,\"hashtag\":null,\"location\":{\"pads\":[{\"id\":109,\"name\":\"Launch Area 0 A, Wallops Island, Virginia\",\"infoURL\":\"\",\"wikiURL\":\"\",\"mapURL\":\"http:\\/\\/maps.google.com\\/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=37.8337+N,+75.4881+W&amp;sll=37.837705,-75.48475&amp;sspn=0.010863,0.022724&amp;g=37.8337+N,+75.489+W&amp;ie=UTF8&amp;ll=37.833791,-75.488251&amp;spn=0.001358,0.00284&amp;t=h&amp;z=190\",\"latitude\":\"37.833700000000000\",\"longitude\":\"-75.488100000000000\",\"agencies\":[{\"id\":44,\"name\":\"National Aeronautics and Space Administration\",\"abbrev\":\"NASA\",\"countryCode\":\"USA\",\"type\":1,\"infoURL\":\"http:\\/\\/www.nasa.gov\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/National_Aeronautics_and_Space_Administration\",\"infoURLs\":[]}]}],\"id\":19,\"name\":\"Wallops Island, Virginia, USA\",\"infoURL\":\"\",\"wikiURL\":\"\",\"countryCode\":\"USA\"},\"rocket\":{\"id\":117,\"name\":\"Antares 230\",\"configuration\":\"230\",\"familyname\":\"Antares\",\"agencies\":[{\"id\":100,\"name\":\"Orbital Sciences Corporation\",\"abbrev\":\"OSC\",\"countryCode\":\"USA\",\"type\":3,\"infoURL\":\"http:\\/\\/www.orbital.com\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/Orbital_Sciences_Corporation\",\"infoURLs\":[]}],\"imageURL\":\"https:\\/\\/s3.amazonaws.com\\/launchlibrary\\/RocketImages\\/placeholder_1920.png\",\"imageSizes\":[320,480,640,720,768,800,960,1024,1080,1280,1440,1920]},\"missions\":[{\"id\":175,\"name\":\"Cygnus CRS OA-5 (S.S. Alan Poindexter)\",\"description\":\"This is the seventh planned flight of the Orbital Sciences' unmanned resupply spacecraft Cygnus and its fifth flight to the International Space Station under the Commercial Resupply Services contract with NASA.\",\"type\":11,\"typeName\":\"Resupply\"}]},{\"id\":1054,\"name\":\"Soyuz-FG | Soyuz MS-02\",\"windowstart\":\"September 23, 2016 18:16:53 UTC\",\"windowend\":\"September 23, 2016 18:16:53 UTC\",\"net\":\"September 23, 2016 18:16:53 UTC\",\"wsstamp\":1474654613,\"westamp\":1474654613,\"netstamp\":1474654613,\"isostart\":\"20160923T181653Z\",\"isoend\":\"20160923T181653Z\",\"isonet\":\"20160923T181653Z\",\"status\":1,\"inhold\":0,\"tbdtime\":0,\"vidURLs\":[],\"vidURL\":null,\"infoURLs\":[],\"infoURL\":null,\"holdreason\":null,\"failreason\":null,\"tbddate\":0,\"probability\":-1,\"hashtag\":null,\"location\":{\"pads\":[{\"id\":29,\"name\":\"1\\/5, Baikonur Cosmodrome, Kazakhstan\",\"infoURL\":\"\",\"wikiURL\":\"\",\"mapURL\":\"http:\\/\\/maps.google.com\\/maps?f=q&amp;hl=en&amp;q=45.920+N,+63.342+E&amp;ie=UTF8&amp;z=16&amp;ll=45.921155,63.338628&amp;spn=0.006672,0.021629&amp;t=k&amp;om=0&amp;iwloc=addr\",\"latitude\":\"45.920000000000000\",\"longitude\":\"63.342000000000000\",\"agencies\":[{\"id\":163,\"name\":\"Russian Aerospace Defence Forces\",\"abbrev\":\"VKO\",\"countryCode\":\"RUS\",\"type\":1,\"infoURL\":\"http:\\/\\/www.eng.mil.ru\\/en\\/structure\\/forces\\/cosmic.htm\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/Russian_Aerospace_Defence_Forces\",\"infoURLs\":[]},{\"id\":63,\"name\":\"Russian Federal Space Agency (ROSCOSMOS)\",\"abbrev\":\"FKA\",\"countryCode\":\"RUS\",\"type\":1,\"infoURL\":\"http:\\/\\/www.roscosmos.ru\\/\",\"wikiURL\":\"http:\\/\\/en.wikipedia.org\\/wiki\\/Russian_Federal_Space_Agency\",\"infoURLs\":[]}]}],\"id\":10,\"name\":\"Baikonur Cosmodrome, Kazakhstan, Russia\",\"infoURL\":\"\",\"wikiURL\":\"\",\"countryCode\":\"KAZ\"},\"rocket\":{\"id\":36,\"name\":\"Soyuz-FG\",\"configuration\":\"FG\",\"familyname\":\"Soyuz-U\",\"agencies\":[],\"imageSizes\":[320,480,640,720,768,800,960,1024,1080,1280,1440,1920,2560],\"imageURL\":\"https:\\/\\/s3.amazonaws.com\\/launchlibrary\\/RocketImages\\/Soyuz-FG_2560.jpg\"},\"missions\":[{\"id\":316,\"name\":\"Soyuz MS-02\",\"description\":\"Soyuz MS-02 begins expedition 49 by carrying Roscosmos cosmonauts Sergei Ryzhikov, Andrei Borisenko and NASA astronaut Robert Kimbrough to the International Space Station. After launching from the Baikonur Cosmodrome in Kazakhstan, they will rendezvous to the station where they will remain for their 5 month stay.\",\"type\":5,\"typeName\":\"Human Exploration\"}]}],\"offset\":0,\"count\":5}";
+    public static final String LOG_TAG = MainActivity.class.getName();
+
+    private static final int LAUNCH_LOADER_ID = 1;
+
+    private static final String LL_REQUEST_URL = "https://launchlibrary.net/1.2/launch/next/10";
+
+    private TextView mEmptyStateTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        List<LaunchItem> testLaunches = QueryTools.extractFeatureFromJson(SAMPLE_JSON);
-
-        // Find a reference to the {@link ListView} in the layout
+                // Find a reference to the {@link ListView} in the layout
         ListView launchListView = (ListView) findViewById(R.id.list);
 
         // Create a new adapter that takes an empty list of earthquakes as input
-        mAdapter = new LaunchArrayAdapter(this, testLaunches);
+        mAdapter = new LaunchArrayAdapter(this, new ArrayList<LaunchItem>());
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         launchListView.setAdapter(mAdapter);
 
+        // find empty TextView and set it to List Empty State
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_state_textview);
+        launchListView.setEmptyView(mEmptyStateTextView);
+
+
+        // Get a reference to the LoaderManager, in order to interact with loaders.
+        LoaderManager loaderManager = getLoaderManager();
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // fetch data
+
+            // Initialize the loader. Pass in the int ID constant defined above and pass in null for
+            // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
+            // because this activity implements the LoaderCallbacks interface).
+            Log.e(LOG_TAG, "Init loader");
+            loaderManager.initLoader(LAUNCH_LOADER_ID, null, this);
+
+        } else {
+            // display error
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+
+            ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
+            mLoadingBar.setVisibility(View.GONE);
+        }
+
 
     }
 
+    @Override
+    public Loader<List<LaunchItem>> onCreateLoader(int i, Bundle bundle) {
+
+        // Create a new loader for the given URL
+        Log.e(LOG_TAG, "OnCreate Loader");
+        return new LaunchAsyncTaskLoader(this, LL_REQUEST_URL);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<LaunchItem>> loader, List<LaunchItem> launches) {
+        Log.e(LOG_TAG, "OnLoadFinished");
+
+        mEmptyStateTextView.setText(R.string.no_launches_found);
+
+        ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
+        mLoadingBar.setVisibility(View.GONE);
+
+        // Clear the adapter of previous earthquake data
+        mAdapter.clear();
+
+        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+        // data set. This will trigger the ListView to update.
+        if (launches != null && !launches.isEmpty()) {
+            mAdapter.addAll(launches);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<LaunchItem>> loader) {
+        // Loader reset, so we can clear out our existing data.
+        mAdapter.clear();
+    }
 
 }
