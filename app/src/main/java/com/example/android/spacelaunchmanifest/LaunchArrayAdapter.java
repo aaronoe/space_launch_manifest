@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Custom Array Adapter to inflate the list layout view with LaunchItems
@@ -26,7 +27,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
      * @param context        The current context. Used to inflate the layout file.
      * @param adapter A List of Words objects to display in a list
      */
-    public LaunchArrayAdapter(Activity context, ArrayList<LaunchItem> adapter) {
+    public LaunchArrayAdapter(Activity context, List<LaunchItem> adapter) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
@@ -91,13 +92,18 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         // --------- Implement Date and Time ----------
 
         // get strings for the date and time
+        String dateToDisplay = "n/a";
+        String timeToDisplay = "n/a";
         long currentDate = currentLaunchItem.getmNetLaunchDate();
-        Date dateObject = new Date(currentDate);
+        if (currentDate != 0){
 
+            currentDate *= 1000;
+            Date dateObject = new Date(currentDate);
 
-        String dateToDisplay = formatDate(dateObject);
+            dateToDisplay = formatDate(dateObject);
 
-        String timeToDisplay = formatTime(dateObject);
+            timeToDisplay = formatTime(dateObject);
+        }
 
 
         // find correct TextView for location

@@ -16,10 +16,10 @@ public class LaunchItem {
     private String mMediaUrl;
 
     // Name of the Vehicle
-    private String mVehicleName;
+    private String mTextLaunchDate;
 
     // probability for launch
-    private int mLaunchProbability;
+    private String mLaunchLocation;
 
     // Mission Name
     private String mMissionName;
@@ -32,16 +32,18 @@ public class LaunchItem {
       * @param launchName Title of the launch
      * @param netLaunchDate Estimated date of the launch
      * @param mediaUrl Url of the broadcast
-     * @param vehicleName Name of the launch vehicle
+     * @param launchLocation Location of the launch
      * @param missionDescription Description of the mission
      */
-    public LaunchItem(String launchName, long netLaunchDate, String mediaUrl, String vehicleName,String missionTitle, String missionDescription){
+    public LaunchItem(String launchName, long netLaunchDate, String textLaunchDate, String launchLocation,
+                      String missionTitle, String missionDescription, String mediaUrl){
         mLaunchName = launchName;
         mNetLaunchDate = netLaunchDate;
-        mMediaUrl = mediaUrl;
-        mVehicleName = vehicleName;
+        mTextLaunchDate = textLaunchDate;
+        mLaunchLocation = launchLocation;
         mMissionName = missionTitle;
         mMissionDescription = missionDescription;
+        mMediaUrl = mediaUrl;
     }
 
     /**
@@ -72,8 +74,8 @@ public class LaunchItem {
      *
      * @return name of the launch vehicle
      */
-    public String getmVehicleName() {
-        return mVehicleName;
+    public String getmTextLaunchDate() {
+        return mTextLaunchDate;
     }
 
     /**
@@ -90,5 +92,13 @@ public class LaunchItem {
      */
     public String getmMissionDescription() {
         return mMissionDescription;
+    }
+
+    /**
+     *
+     * @return the location of the launch as a string
+     */
+    public String getmLaunchLocation() {
+        return mLaunchLocation;
     }
 }
