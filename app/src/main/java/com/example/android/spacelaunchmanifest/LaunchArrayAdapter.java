@@ -78,13 +78,24 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         // get current list item
         LaunchItem currentLaunchItem = getItem(position);
 
+        // Set the launch location to the corresponding TextView
+        TextView locationTextView =(TextView) listItemView.findViewById(R.id.launch_location);
+        locationTextView.setText(currentLaunchItem.getmLaunchLocation());
 
         // Set launch title to corresponding TextView
-        TextView launchTitleView = (TextView) listItemView.findViewById(R.id.launch_title);
+        TextView launchTitleView = (TextView) listItemView.findViewById(R.id.full_launch_title);
         launchTitleView.setText(currentLaunchItem.getmLaunchName());
 
+        // Set text launch date to corresponding TextView
+        TextView launchTextDate = (TextView) listItemView.findViewById(R.id.launch_text_time);
+        launchTextDate.setText(currentLaunchItem.getmTextLaunchDate());
+
+        // Set the mission name to corresponding TextView
+        TextView missionTitle = (TextView) listItemView.findViewById(R.id.lone_mission_title);
+        missionTitle.setText(currentLaunchItem.getmMissionName());
+
         // Set mission description to corresponding TextView
-        TextView missionDescView = (TextView) listItemView.findViewById(R.id.mission_description);
+        TextView missionDescView = (TextView) listItemView.findViewById(R.id.lone_mission_description);
         missionDescView.setText(currentLaunchItem.getmMissionDescription());
 
 

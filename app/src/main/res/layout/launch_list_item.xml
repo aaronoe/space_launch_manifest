@@ -2,82 +2,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingEnd="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp">
-
-    <TextView
-        android:id="@+id/probability"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/probability_indicator"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        tools:text="8.9" />
+    android:orientation="vertical"
+    >
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:elevation="4dp"
+        android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/full_launch_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:textColor="@color/textColorLaunchLocation"
+        android:textSize="20sp"
+        android:layout_margin="8dp"
+        tools:text="Atlas V 401 | WorldView-4" />
 
-        <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/textColorLaunchDetails"
+                android:textSize="12sp"
+                tools:text="Vandenberg AFB, CA, USA"
+                android:id="@+id/launch_location" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textColor="@color/textColorLaunchDetails"
+                android:textSize="12sp"
+                tools:text="September 16, 2016 18:30:00 UTC"
+                android:id="@+id/launch_text_time" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-medium"
-            android:maxLines="1"
-            android:textAllCaps="true"
-            android:textColor="@color/textColorLaunchDetails"
-            android:textSize="12sp"
-            tools:text="30km S of"
-            android:id="@+id/launch_title" />
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp">
 
-        <TextView
-            android:id="@+id/mission_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/textColorLaunchLocation"
-            android:textSize="16sp"
-            tools:text="Long placeholder location that should wrap to more than 2 lines of text" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textColor="@color/textColorLaunchDetails"
+                android:textSize="12sp"
+                tools:text="Your Time:" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textColor="@color/textColorLaunchDetails"
+                android:textSize="12sp"
+                tools:text="Thu, Sep 15, 6:43 PM" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/darker_gray">
+    </View>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/atlas_480"/>
+
+    <TextView
+        android:id="@+id/lone_mission_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical">
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/textColorLaunchLocation"
+        android:textSize="20sp"
+        tools:text="WorldView-4" />
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textColor="@color/textColorLaunchDetails"
-            android:textSize="12sp"
-            tools:text="Mar 6, 2010" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:paddingBottom="8dp"
+        android:layout_margin="8dp"
+        android:textColor="@color/textColorLaunchDetails"
+        android:textSize="14sp"
+        tools:text="WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit. Satellite will provide high-resolution imagery in panchromatic and multispectral modes."
+        android:id="@+id/lone_mission_description" />
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:textColor="@color/textColorLaunchDetails"
-            android:textSize="12sp"
-            tools:text="3:00 PM" />
 
     </LinearLayout>
 </LinearLayout>
