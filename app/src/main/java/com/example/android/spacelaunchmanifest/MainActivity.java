@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        List<LaunchItem> testLaunches = extractFeatureFromJson(SAMPLE_JSON);
+        List<LaunchItem> testLaunches = QueryTools.extractFeatureFromJson(SAMPLE_JSON);
 
         // Find a reference to the {@link ListView} in the layout
         ListView launchListView = (ListView) findViewById(R.id.list);
@@ -41,94 +41,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Return a list of {@link LaunchItem} objects that has been built up from
-     * parsing a JSON response.
-     */
-    private static List<LaunchItem> extractFeatureFromJson(String launchesJson) {
-        // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(launchesJson)) {
-            return null;
-        }
 
-        // Create an empty ArrayList that we can start adding launches to
-        List<LaunchItem> launches = new ArrayList<>();
-
-        // Try to parse the JSON response string. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
-        try {
-
-            // Create a JSONObject from the JSON response string
-            JSONObject baseJsonResponse = new JSONObject(launchesJson);
-
-            // Extract the JSONArray associated with the key called "launches",
-            // which represents a list of launches
-            JSONArray baseLaunchList = baseJsonResponse.getJSONArray("launches");
-
-
-            // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
-            for (int i = 0; i < baseLaunchList.length(); i++) {
-
-                // Get a single earthquake at position i within the list of launches
-                JSONObject currentLaunch = baseLaunchList.getJSONObject(i);
-
-                // get the name of the current launch, e.g.:
-                // "Atlas V 401 | WorldView-4"
-                String launchName = currentLaunch.getString("name");
-
-                // get the unix epoch time stamp in seconds for the launch, e.g.:
-                // 1474050600
-                long netTimeStamp = currentLaunch.getLong("netstamp");
-
-                // Time Stamp as a predefined string
-                String textTimeStamp = currentLaunch.getString("net");
-
-                // get object which contains information about the location
-                JSONObject locationObject = currentLaunch.getJSONObject("location");
-                // get string which contains the location name, e.g.:
-                // "Vandenberg AFB, CA, USA"
-                String locationName = locationObject.getString("name");
-
-                // get the array which contains information about the mission
-                JSONArray missionsArray = currentLaunch.getJSONArray("missions");
-                // get the first mission object in the array
-                JSONObject firstMission = missionsArray.getJSONObject(0);
-                // get the first mission's name, e.g.:
-                // "WorldView-4"
-                String missionName = firstMission.getString("name");
-                // get the first mission's description, e.g.:
-                // "WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit.
-                // Satellite will provide high-resolution imagery in panchromatic and multispectral modes."
-                String missionDescription = firstMission.getString("description");
-
-                // get the JSONArray containing media URLs
-                JSONArray mediaArray = currentLaunch.getJSONArray("vidURLs");
-                // get the first media link as a string, e.g.:
-                // "http:\/\/www.ulalaunch.com\/webcast"
-                String firstMediaLink = "";
-                if (mediaArray.length() > 0) {
-                    firstMediaLink = mediaArray.getString(0);
-                }
-
-
-                // Create a new {@link LaunchItem} object with the launch-name, timestamp, location
-                // mission name and description, and media url from the JSON response.
-                LaunchItem launch = new LaunchItem(launchName, netTimeStamp, textTimeStamp, locationName,
-                        missionName, missionDescription, firstMediaLink);
-
-                // Add the new {@link LaunchItem} to the list of launches.
-                launches.add(launch);
-            }
-
-        } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
-        }
-
-        // Return the list of launches
-        return launches;
-    }
 }

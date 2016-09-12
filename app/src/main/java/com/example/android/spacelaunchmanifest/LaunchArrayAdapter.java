@@ -52,7 +52,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
      * @return a formatted time like "8:30 pm"
      */
     private String formatTime(Date timeObject){
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("E, LLL dd, h:mm a");
         return dateFormatter.format(timeObject);
     }
 
@@ -103,7 +103,6 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         // --------- Implement Date and Time ----------
 
         // get strings for the date and time
-        String dateToDisplay = "n/a";
         String timeToDisplay = "n/a";
         long currentDate = currentLaunchItem.getmNetLaunchDate();
         if (currentDate != 0){
@@ -111,17 +110,10 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
             currentDate *= 1000;
             Date dateObject = new Date(currentDate);
 
-            dateToDisplay = formatDate(dateObject);
-
             timeToDisplay = formatTime(dateObject);
         }
 
 
-        // find correct TextView for location
-        TextView dateTextView = (TextView) listItemView.findViewById(R.id.date);
-        // Get the version name from the current AndroidFlavor object and
-        // set this text on the name TextView
-        dateTextView.setText(dateToDisplay);
 
         // find correct TextView for location
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.time);

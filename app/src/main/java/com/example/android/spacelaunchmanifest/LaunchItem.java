@@ -27,6 +27,9 @@ public class LaunchItem {
     // Mission description
     private String mMissionDescription;
 
+    // rocket image url
+    private String mRocketImageUrl;
+
     /**
      * Public constructor method of the LaunchItem Class
       * @param launchName Title of the launch
@@ -36,7 +39,7 @@ public class LaunchItem {
      * @param missionDescription Description of the mission
      */
     public LaunchItem(String launchName, long netLaunchDate, String textLaunchDate, String launchLocation,
-                      String missionTitle, String missionDescription, String mediaUrl){
+                      String missionTitle, String missionDescription, String mediaUrl, String rocketImageUrl){
         mLaunchName = launchName;
         mNetLaunchDate = netLaunchDate;
         mTextLaunchDate = textLaunchDate;
@@ -44,6 +47,7 @@ public class LaunchItem {
         mMissionName = missionTitle;
         mMissionDescription = missionDescription;
         mMediaUrl = mediaUrl;
+        mRocketImageUrl = rocketImageUrl;
     }
 
     /**
@@ -101,4 +105,13 @@ public class LaunchItem {
     public String getmLaunchLocation() {
         return mLaunchLocation;
     }
+
+    /**
+     *
+     * @return the image url for this rocket
+     */
+    public String getmRocketImageUrl() {
+        return mRocketImageUrl;
+    }
+
 }

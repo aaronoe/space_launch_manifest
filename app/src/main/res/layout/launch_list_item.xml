@@ -75,7 +75,7 @@
                 android:layout_gravity="end"
                 android:textColor="@color/textColorLaunchDetails"
                 android:textSize="12sp"
-                tools:text="Your Time:" />
+                android:text="Your Time:" />
 
             <TextView
                 android:id="@+id/time"
@@ -90,14 +90,6 @@
 
     </LinearLayout>
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/darker_gray">
-    </View>
 
     <ImageView
         android:layout_width="match_parent"
