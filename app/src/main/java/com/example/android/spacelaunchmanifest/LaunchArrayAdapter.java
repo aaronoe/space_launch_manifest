@@ -130,7 +130,6 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
             watchLiveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Uri liveMediaUri = Uri.parse(liveVideoUrl);
                     // Create a new intent to view the earthquake URI
                     Intent websiteIntent = new Intent(Intent.ACTION_VIEW, liveMediaUri);
@@ -190,10 +189,6 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
                 getContext().startActivity(intent);
             }
         });
-
-
-
-
 
 
         return listItemView;
