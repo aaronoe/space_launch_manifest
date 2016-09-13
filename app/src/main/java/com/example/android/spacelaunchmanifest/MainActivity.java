@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<List<LaunchItem>> loader, List<LaunchItem> launches) {
         Log.e(LOG_TAG, "OnLoadFinished");
 
+
         mEmptyStateTextView.setText(R.string.no_launches_found);
 
         ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
