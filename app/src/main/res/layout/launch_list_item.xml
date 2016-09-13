@@ -93,6 +93,7 @@
 
     <ImageView
         android:layout_width="match_parent"
+        android:id="@+id/launch_picture"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@drawable/atlas_480"/>

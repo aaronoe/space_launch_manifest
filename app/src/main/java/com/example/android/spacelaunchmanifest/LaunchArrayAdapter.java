@@ -1,10 +1,12 @@
 package com.example.android.spacelaunchmanifest;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -34,6 +36,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, adapter);
     }
+
 
 
     /**
@@ -120,6 +123,16 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         timeTextView.setText(timeToDisplay);
+
+
+        String currentImageURl = currentLaunchItem.getmRocketImageUrl();
+        ImageView currentImageView = (ImageView) listItemView.findViewById(R.id.launch_picture);
+
+        String smallerImageUrl = currentImageURl.replace("2560", "480");
+        smallerImageUrl = smallerImageUrl.replace("1920", "480");
+
+        // show The Image in a ImageView
+        new DownloadImageTask(currentImageView).execute(smallerImageUrl);
 
 
 
