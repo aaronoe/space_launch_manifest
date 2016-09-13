@@ -2,6 +2,8 @@ package com.example.android.spacelaunchmanifest;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -149,17 +154,38 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         timeTextView.setText(timeToDisplay);
 
 
-        String currentImageURl = currentLaunchItem.getmRocketImageUrl();
+
+
+
         ImageView currentImageView = (ImageView) listItemView.findViewById(R.id.launch_picture);
+        /*
+        String currentImageURl = currentLaunchItem.getmRocketImageUrl();
 
         String smallerImageUrl = currentImageURl.replace("2560", "480");
         smallerImageUrl = smallerImageUrl.replace("1920", "480");
+        */
+
+        double latitude = currentLaunchItem.getmLaunchPadLatitude();
+        double longitude = currentLaunchItem.getmLaunchPadLongitude();
+
+        String locationUrl =
+                "http://maps.google.com/maps/api/staticmap?center=" +latitude + "," + longitude +
+                        "&zoom=10" +
+                        "&scale=1" +
+                        "&size=480x220" +
+                        "&sensor=false" +
+                        "&maptype=hybrid" +
+                        "&markers=color:red%7Clabel:%7C" +latitude +"," +longitude;
 
         // show The Image in a ImageView
-        new DownloadImageTask(currentImageView).execute(smallerImageUrl);
+        //new DownloadImageTask(currentImageView).execute(locationUrl);
+
+        Picasso.with(listItemView.getContext()).load(locationUrl).into(currentImageView);
+
 
 
         return listItemView;
     }
+
 
 }

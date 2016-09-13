@@ -30,6 +30,12 @@ public class LaunchItem {
     // rocket image url
     private String mRocketImageUrl;
 
+    // latitude of the launch pad
+    private double mLaunchPadLatitude;
+
+    // longitude of the launch pad
+    private double mLaunchPadLongitude;
+
     /**
      * Public constructor method of the LaunchItem Class
       * @param launchName Title of the launch
@@ -39,7 +45,8 @@ public class LaunchItem {
      * @param missionDescription Description of the mission
      */
     public LaunchItem(String launchName, long netLaunchDate, String textLaunchDate, String launchLocation,
-                      String missionTitle, String missionDescription, String mediaUrl, String rocketImageUrl){
+                      String missionTitle, String missionDescription, String mediaUrl, String rocketImageUrl,
+                      double padLatitude, double padLongitude){
         mLaunchName = launchName;
         mNetLaunchDate = netLaunchDate;
         mTextLaunchDate = textLaunchDate;
@@ -48,6 +55,8 @@ public class LaunchItem {
         mMissionDescription = missionDescription;
         mMediaUrl = mediaUrl;
         mRocketImageUrl = rocketImageUrl;
+        mLaunchPadLatitude = padLatitude;
+        mLaunchPadLongitude = padLongitude;
     }
 
     /**
@@ -114,4 +123,19 @@ public class LaunchItem {
         return mRocketImageUrl;
     }
 
+    /**
+     *
+     * @return the latitude of the launch pad
+     */
+    public double getmLaunchPadLatitude() {
+        return mLaunchPadLatitude;
+    }
+
+    /**
+     *
+     * @return the longitude of the launchpad
+     */
+    public double getmLaunchPadLongitude() {
+        return mLaunchPadLongitude;
+    }
 }

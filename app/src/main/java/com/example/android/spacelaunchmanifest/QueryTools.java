@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Methods to query the launchlibrary service and return a list of launches
  * Created by aaron on 9/12/2016.
  */
 public final class QueryTools {
@@ -210,11 +211,18 @@ public final class QueryTools {
                 // get the image url contained in the rocket object
                 String rocketImageUrl = rocketObject.getString("imageURL");
 
+                // extract the latitude and longitude of the launchpad
+                JSONObject launchLocation = currentLaunch.getJSONObject("location");
+                JSONArray padsArray = launchLocation.getJSONArray("pads");
+                JSONObject firstPad = padsArray.getJSONObject(0);
+                double padLatitude = firstPad.getDouble("latitude");
+                double padLongitude = firstPad.getDouble("longitude");
+
 
                 // Create a new {@link LaunchItem} object with the launch-name, timestamp, location
                 // mission name and description, and media url from the JSON response.
                 LaunchItem launch = new LaunchItem(launchName, netTimeStamp, textTimeStamp, locationName,
-                        missionName, missionDescription, firstMediaLink, rocketImageUrl);
+                        missionName, missionDescription, firstMediaLink, rocketImageUrl, padLatitude, padLongitude);
 
                 // Add the new {@link LaunchItem} to the list of launches.
                 launches.add(launch);

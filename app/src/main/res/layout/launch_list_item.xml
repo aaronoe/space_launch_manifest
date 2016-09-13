@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,9 +93,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:id="@+id/launch_picture"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_480"/>
+
+
 
     <TextView
         android:id="@+id/lone_mission_title"
@@ -123,7 +124,7 @@
         android:id="@+id/watch_live_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Watch Live"
+        android:text="@string/watch_live"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
