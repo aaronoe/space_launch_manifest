@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private static final int LAUNCH_LOADER_ID = 1;
 
-    private static final String LL_REQUEST_URL = "https://launchlibrary.net/1.2/launch/next/20";
+    private static final String LL_REQUEST_URL = "https://launchlibrary.net/1.2/launch/next/10";
 
     private TextView mEmptyStateTextView;
 

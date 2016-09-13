@@ -96,7 +96,7 @@
         android:id="@+id/launch_picture"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/atlas_480"/>
+        android:src="@drawable/placeholder_480"/>
 
     <TextView
         android:id="@+id/lone_mission_title"
@@ -112,12 +112,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
+
         android:layout_margin="8dp"
         android:textColor="@color/textColorLaunchDetails"
         android:textSize="14sp"
         tools:text="WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit. Satellite will provide high-resolution imagery in panchromatic and multispectral modes."
         android:id="@+id/lone_mission_description" />
+
+    <Button
+        android:id="@+id/watch_live_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch Live"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textAllCaps="false"
+        android:visibility="gone"/>
 
 
     </LinearLayout>

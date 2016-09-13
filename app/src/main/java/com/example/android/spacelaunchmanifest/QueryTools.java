@@ -200,7 +200,7 @@ public final class QueryTools {
                 JSONArray mediaArray = currentLaunch.getJSONArray("vidURLs");
                 // get the first media link as a string, e.g.:
                 // "http:\/\/www.ulalaunch.com\/webcast"
-                String firstMediaLink = "";
+                String firstMediaLink = null;
                 if (mediaArray.length() > 0) {
                     firstMediaLink = mediaArray.getString(0);
                 }

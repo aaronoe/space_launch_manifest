@@ -1,14 +1,18 @@
 package com.example.android.spacelaunchmanifest;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -117,6 +121,26 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         }
 
 
+        Button watchLiveButton = (Button) listItemView.findViewById(R.id.watch_live_button);
+        final String liveVideoUrl = currentLaunchItem.getmMediaUrl();
+
+        if(liveVideoUrl != null){
+            watchLiveButton.setVisibility(View.VISIBLE);
+            watchLiveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Uri liveMediaUri = Uri.parse(liveVideoUrl);
+                    // Create a new intent to view the earthquake URI
+                    Intent websiteIntent = new Intent(Intent.ACTION_VIEW, liveMediaUri);
+
+                    // Send the intent to launch a new activity
+                    v.getContext().startActivity(websiteIntent);
+                }
+            });
+        } else {
+            watchLiveButton.setVisibility(View.GONE);
+        }
 
         // find correct TextView for location
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.time);
@@ -135,11 +159,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         new DownloadImageTask(currentImageView).execute(smallerImageUrl);
 
 
-
         return listItemView;
     }
-
-
-
 
 }
