@@ -3,13 +3,23 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Layout for a list of earthquakes-->
-    <ListView
-        android:id="@+id/list"
-        android:orientation="vertical"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_main_swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:drawSelectorOnTop="true" />
+        android:layout_height="match_parent">
+
+
+        <ListView
+            android:id="@+id/list"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="true"
+            android:divider="@null"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
     <TextView

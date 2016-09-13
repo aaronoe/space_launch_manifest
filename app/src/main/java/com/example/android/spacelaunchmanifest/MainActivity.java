@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,14 +40,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private TextView mEmptyStateTextView;
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-                // Find a reference to the {@link ListView} in the layout
+        // Find a reference to the {@link ListView} in the layout
         ListView launchListView = (ListView) findViewById(R.id.list);
+
 
         // Create a new adapter that takes an empty list of earthquakes as input
         mAdapter = new LaunchArrayAdapter(this, new ArrayList<LaunchItem>());
@@ -60,11 +65,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
         // Get a reference to the LoaderManager, in order to interact with loaders.
-        LoaderManager loaderManager = getLoaderManager();
+        final LoaderManager loaderManager = getLoaderManager();
 
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+
         if (networkInfo != null && networkInfo.isConnected()) {
             // fetch data
 
@@ -81,6 +87,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
             mLoadingBar.setVisibility(View.GONE);
         }
+
+        final LoaderManager.LoaderCallbacks lC = this;
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loaderManager.restartLoader(LAUNCH_LOADER_ID, null, lC);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
 
     }

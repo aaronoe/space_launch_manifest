@@ -2,4 +2,5 @@
     <string name="app_name">Space Launch Manifest</string>
     <string name="no_launches_found">No launches found</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="your_time">Your time:</string>
 </resources>

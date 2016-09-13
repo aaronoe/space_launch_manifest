@@ -75,7 +75,7 @@
                 android:layout_gravity="end"
                 android:textColor="@color/textColorLaunchDetails"
                 android:textSize="12sp"
-                android:text="Your Time:" />
+                android:text="@string/your_time" />
 
             <TextView
                 android:id="@+id/time"
@@ -103,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:textColor="@color/textColorLaunchLocation"
         android:textSize="20sp"
         tools:text="WorldView-4" />
@@ -110,8 +111,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:fontFamily="sans-serif-medium"
         android:paddingBottom="8dp"
         android:layout_margin="8dp"
         android:textColor="@color/textColorLaunchDetails"
