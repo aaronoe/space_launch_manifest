@@ -2,10 +2,8 @@ package com.example.android.spacelaunchmanifest;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +14,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Custom Array Adapter to inflate the list layout view with LaunchItems
@@ -154,25 +150,23 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         timeTextView.setText(timeToDisplay);
 
 
+        ImageView currentImageView = (ImageView) listItemView.findViewById(R.id.map_picture_view);
 
-
-
-        ImageView currentImageView = (ImageView) listItemView.findViewById(R.id.launch_picture);
-        /*
+        /* Use the preview image for each launch
         String currentImageURl = currentLaunchItem.getmRocketImageUrl();
 
         String smallerImageUrl = currentImageURl.replace("2560", "480");
         smallerImageUrl = smallerImageUrl.replace("1920", "480");
         */
 
-        double latitude = currentLaunchItem.getmLaunchPadLatitude();
-        double longitude = currentLaunchItem.getmLaunchPadLongitude();
+        final double latitude = currentLaunchItem.getmLaunchPadLatitude();
+        final double longitude = currentLaunchItem.getmLaunchPadLongitude();
 
         String locationUrl =
                 "http://maps.google.com/maps/api/staticmap?center=" +latitude + "," + longitude +
                         "&zoom=10" +
-                        "&scale=1" +
-                        "&size=480x220" +
+                        "&scale=2" +
+                        "&size=375x195" +
                         "&sensor=false" +
                         "&maptype=hybrid" +
                         "&markers=color:red%7Clabel:%7C" +latitude +"," +longitude;
@@ -181,6 +175,24 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         //new DownloadImageTask(currentImageView).execute(locationUrl);
 
         Picasso.with(listItemView.getContext()).load(locationUrl).into(currentImageView);
+
+        FloatingActionButton mapsButton = (FloatingActionButton) listItemView.findViewById(R.id.fab);
+        final String launchPadName = currentLaunchItem.getmLaunchPadName();
+        mapsButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("geo:" + latitude + "," + longitude + "?q=" + latitude + "," + longitude + "("+ launchPadName +")"));
+                // Make the Intent explicit by setting the Google Maps package
+                intent.setPackage("com.google.android.apps.maps");
+
+                // Attempt to start an activity that can handle the Intent
+                getContext().startActivity(intent);
+            }
+        });
+
+
+
 
 
 

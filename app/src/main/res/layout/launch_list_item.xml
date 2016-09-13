@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -90,21 +91,39 @@
     </LinearLayout>
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <ImageView
         android:layout_width="match_parent"
-        android:id="@+id/launch_picture"
-        android:layout_height="160dp"
+        android:id="@+id/map_picture_view"
+        android:layout_height="180dp"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder_480"/>
 
+    <android.support.design.widget.FloatingActionButton
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/map_picture_view"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="-32dp"
+        android:layout_marginRight="20dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@drawable/ic_explore_white_36dp"
+        android:elevation="8dp" />
 
 
     <TextView
         android:id="@+id/lone_mission_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="28dp"
         android:layout_marginLeft="8dp"
+        android:layout_below="@+id/map_picture_view"
         android:layout_marginStart="8dp"
         android:textColor="@color/textColorLaunchLocation"
         android:textSize="20sp"
@@ -113,12 +132,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_margin="8dp"
+        android:layout_below="@+id/lone_mission_title"
         android:textColor="@color/textColorLaunchDetails"
         android:textSize="14sp"
         tools:text="WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit. Satellite will provide high-resolution imagery in panchromatic and multispectral modes."
         android:id="@+id/lone_mission_description" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/watch_live_button"

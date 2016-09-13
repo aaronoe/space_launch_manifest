@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryLight">#C5CAE9</color>
 
     <!-- Text color for the details of the launch in the list item -->
     <color name="textColorLaunchDetails">#B4BAC0</color>

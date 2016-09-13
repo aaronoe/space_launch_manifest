@@ -217,12 +217,14 @@ public final class QueryTools {
                 JSONObject firstPad = padsArray.getJSONObject(0);
                 double padLatitude = firstPad.getDouble("latitude");
                 double padLongitude = firstPad.getDouble("longitude");
+                String padName = firstPad.getString("name");
 
 
                 // Create a new {@link LaunchItem} object with the launch-name, timestamp, location
                 // mission name and description, and media url from the JSON response.
                 LaunchItem launch = new LaunchItem(launchName, netTimeStamp, textTimeStamp, locationName,
-                        missionName, missionDescription, firstMediaLink, rocketImageUrl, padLatitude, padLongitude);
+                        missionName, missionDescription, firstMediaLink,
+                        rocketImageUrl, padLatitude, padLongitude, padName);
 
                 // Add the new {@link LaunchItem} to the list of launches.
                 launches.add(launch);
