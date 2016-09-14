@@ -3,6 +3,7 @@ package com.example.android.spacelaunchmanifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import java.util.Locale;
 public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
 
 
+    Activity mContext;
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
@@ -40,6 +42,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, adapter);
+        mContext = context;
     }
 
 
@@ -84,7 +87,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
         }
 
         // get current list item
-        LaunchItem currentLaunchItem = getItem(position);
+        final LaunchItem currentLaunchItem = getItem(position);
 
         // Set the launch location to the corresponding TextView
         TextView locationTextView =(TextView) listItemView.findViewById(R.id.launch_location);
@@ -142,6 +145,19 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
             watchLiveButton.setVisibility(View.GONE);
         }
 
+        // TODO: More info button
+        Button moreInfoButton = (Button) listItemView.findViewById(R.id.more_info_button);
+
+        moreInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent infoIntent = new Intent(getContext().getApplicationContext(), LaunchDetailActivity.class);
+                infoIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                infoIntent.putExtra("currentLaunchItem", currentLaunchItem);
+                getContext().getApplicationContext().startActivity(infoIntent);
+            }
+        });
+
         // find correct TextView for location
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.time);
         // Get the version name from the current AndroidFlavor object and
@@ -163,7 +179,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
 
         String locationUrl =
                 "http://maps.google.com/maps/api/staticmap?center=" +latitude + "," + longitude +
-                        "&zoom=10" +
+                        "&zoom=8" +
                         "&scale=2" +
                         "&size=375x195" +
                         "&sensor=false" +
@@ -177,6 +193,8 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
 
         FloatingActionButton mapsButton = (FloatingActionButton) listItemView.findViewById(R.id.fab);
         final String launchPadName = currentLaunchItem.getmLaunchPadName();
+
+
         mapsButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 

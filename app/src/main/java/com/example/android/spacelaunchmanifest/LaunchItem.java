@@ -1,10 +1,14 @@
 package com.example.android.spacelaunchmanifest;
 
+import java.io.Serializable;
+
+
 /**
  * Public class to hold the information of the launches
  * Created by aaron on 9/8/2016.
  */
-public class LaunchItem {
+@SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
+public class LaunchItem implements Serializable {
 
     // Display name of the launch
     private String mLaunchName;
