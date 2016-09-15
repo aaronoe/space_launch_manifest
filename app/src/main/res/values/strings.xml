@@ -15,4 +15,7 @@
     <string name="windowClose">Window Close: </string>
     <string name="missionDetails">Mission Details</string>
     <string name="moreInfoButton">More Info</string>
+    <string name="vehicleDetails">Vehicle Details</string>
+    <string name="vehicleConfiguration">Vehicle Configuration:</string>
+    <string name="vehicleFamily">Vehicle Family:</string>
 </resources>

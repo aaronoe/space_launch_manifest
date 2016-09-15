@@ -1,4 +1,4 @@
-package com.example.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Contains more details about the mission
@@ -46,6 +43,43 @@ public class DetailpageMissionFragment extends Fragment {
         String missionDescription = mCurrentLaunch.getmMissionDescription();
         TextView missionDescriptionTextView = (TextView) rootView.findViewById(R.id.mission_description);
         missionDescriptionTextView.setText(missionDescription);
+
+        // ----------------------------------------------------------
+        // Vehicle Name
+        String rocketName = mCurrentLaunch.getmRocketName();
+        TextView rocketNameTextView = (TextView) rootView.findViewById(R.id.rocketNameTextView);
+        rocketNameTextView.setText(rocketName);
+
+        // ----------------------------------------------------------
+        // Vehicle Configuration
+        String rocketConfiguration = getResources().getString(R.string.vehicleConfiguration);
+        String rocketConfigVal = mCurrentLaunch.getmRocketConfiguration();
+
+        if (rocketConfigVal.equals("")){
+            rocketConfiguration += " n/a";
+        } else {
+            rocketConfiguration += " " + rocketConfigVal;
+        }
+
+        TextView rocketConfigTextView = (TextView) rootView.findViewById(R.id.rocketConfigTextView);
+        rocketConfigTextView.setText(rocketConfiguration);
+
+        // ----------------------------------------------------------
+        // Vehicle Configuration
+        String vehicleFamily = getResources().getString(R.string.vehicleFamily);
+        String rocketFamilyVal = mCurrentLaunch.getmRocketFamily();
+
+        if (rocketFamilyVal.equals("")){
+            vehicleFamily += " n/a";
+        } else {
+            vehicleFamily += " " + rocketFamilyVal;
+        }
+
+        TextView rocketFamilyTextView = (TextView) rootView.findViewById(R.id.rocketFamilyTextView);
+        rocketFamilyTextView.setText(vehicleFamily);
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package com.example.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

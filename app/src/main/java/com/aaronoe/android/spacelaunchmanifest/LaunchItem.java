@@ -1,4 +1,4 @@
-package com.example.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest;
 
 import java.io.Serializable;
 
@@ -55,6 +55,15 @@ public class LaunchItem implements Serializable {
     // mission type
     private String mMissionType;
 
+    // rocket name
+    private String mRocketName;
+
+    // rocket configuration
+    private String mRocketConfiguration;
+
+    // rocket family
+    private String mRocketFamily;
+
     /**
      * Public constructor method of the LaunchItem Class
       * @param launchName Title of the launch
@@ -66,7 +75,8 @@ public class LaunchItem implements Serializable {
     public LaunchItem(String launchName, long netLaunchDate, String textLaunchDate, String launchLocation,
                       String missionTitle, String missionDescription, String mediaUrl, String rocketImageUrl,
                       double padLatitude, double padLongitude, String launchPadName, int launchStatus,
-                      long launchWindowOpen, long launchWindowClose, String missionType){
+                      long launchWindowOpen, long launchWindowClose, String missionType, String rocketName,
+                      String rocketConfiguration, String rocketFamily){
         mLaunchName = launchName;
         mNetLaunchDate = netLaunchDate;
         mTextLaunchDate = textLaunchDate;
@@ -82,6 +92,9 @@ public class LaunchItem implements Serializable {
         mLaunchWindowOpen = launchWindowOpen;
         mLaunchWindowClose = launchWindowClose;
         mMissionType = missionType;
+        mRocketName = rocketName;
+        mRocketConfiguration = rocketConfiguration;
+        mRocketFamily = rocketFamily;
     }
 
     /**
@@ -203,4 +216,29 @@ public class LaunchItem implements Serializable {
     public String getmMissionType() {
         return mMissionType;
     }
+
+    /**
+     *
+     * @return the rocket name
+     */
+    public String getmRocketName() {
+        return mRocketName;
+    }
+
+    /**
+     *
+     * @return the rocket configuration
+     */
+    public String getmRocketConfiguration() {
+        return mRocketConfiguration;
+    }
+
+    /**
+     *
+     * @return the rocket family name
+     */
+    public String getmRocketFamily() {
+        return mRocketFamily;
+    }
+
 }

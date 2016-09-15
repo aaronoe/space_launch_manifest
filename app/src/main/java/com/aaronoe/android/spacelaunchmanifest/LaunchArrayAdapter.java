@@ -1,9 +1,8 @@
-package com.example.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Custom Array Adapter to inflate the list layout view with LaunchItems

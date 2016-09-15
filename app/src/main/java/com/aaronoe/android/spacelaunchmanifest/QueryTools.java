@@ -1,4 +1,4 @@
-package com.example.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -213,6 +213,13 @@ public final class QueryTools {
                 JSONObject rocketObject = currentLaunch.getJSONObject("rocket");
                 // get the image url contained in the rocket object
                 String rocketImageUrl = rocketObject.getString("imageURL");
+                // get the rocket name
+                String rocketName = rocketObject.getString("name");
+                // get rocket configuration
+                String rocketConfiguration = rocketObject.getString("configuration");
+                // get rocket family name
+                String rocketFamilyName = rocketObject.getString("familyname");
+
 
                 // extract the latitude and longitude of the launchpad
                 JSONObject launchLocation = currentLaunch.getJSONObject("location");
@@ -235,7 +242,8 @@ public final class QueryTools {
                 // mission name and description, and media url from the JSON response.
                 LaunchItem launch = new LaunchItem(launchName, netTimeStamp, textTimeStamp, locationName,
                         missionName, missionDescription, firstMediaLink, rocketImageUrl, padLatitude,
-                        padLongitude, padName, launchStatus, launchWindowOpen, launchWindowClose, missionType);
+                        padLongitude, padName, launchStatus, launchWindowOpen, launchWindowClose, missionType,
+                        rocketName, rocketConfiguration, rocketFamilyName);
 
                 // Add the new {@link LaunchItem} to the list of launches.
                 launches.add(launch);

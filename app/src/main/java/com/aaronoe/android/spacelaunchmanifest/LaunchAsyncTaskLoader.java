@@ -1,4 +1,4 @@
-package com.example.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;

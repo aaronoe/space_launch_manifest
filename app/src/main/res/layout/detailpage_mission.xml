@@ -95,13 +95,14 @@
                 android:textStyle="bold"
                 android:paddingTop="12dp"
                 android:layout_margin="4dp"
-                tools:text="Vehicle Details"
+                android:text="@string/vehicleDetails"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:id="@+id/rocketNameTextView"
                 android:layout_marginBottom="4dp"
                 android:layout_gravity="center_horizontal"
                 tools:text="Long March 2F/G" />
@@ -116,6 +117,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rocketConfigTextView"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
@@ -124,6 +126,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rocketFamilyTextView"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="12dp"
                 android:layout_marginLeft="16dp"
