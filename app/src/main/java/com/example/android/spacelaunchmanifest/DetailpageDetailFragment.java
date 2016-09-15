@@ -38,7 +38,7 @@ public class DetailpageDetailFragment extends Fragment {
      * @return a formatted date
      */
     private String formatNetLaunchDate(Date dateObject){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE,  MMMM dd,  hh:mm", Locale.ENGLISH);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE,  MMMM dd,  HH:mm", Locale.ENGLISH);
         return dateFormat.format(dateObject);
     }
 
@@ -51,7 +51,7 @@ public class DetailpageDetailFragment extends Fragment {
             launchWindowTime *= 1000;
             Date dateObject = new Date(launchWindowTime);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
             return dateFormat.format(dateObject);
 
         }

@@ -196,6 +196,9 @@ public final class QueryTools {
                 // "WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit.
                 // Satellite will provide high-resolution imagery in panchromatic and multispectral modes."
                 String missionDescription = firstMission.getString("description");
+                // get the mission type, e.g.:
+                // "Human Exploration"
+                String missionType = firstMission.getString("typeName");
 
                 // get the JSONArray containing media URLs
                 JSONArray mediaArray = currentLaunch.getJSONArray("vidURLs");
@@ -227,11 +230,12 @@ public final class QueryTools {
                 long launchWindowClose = currentLaunch.getLong("westamp");
 
 
+
                 // Create a new {@link LaunchItem} object with the launch-name, timestamp, location
                 // mission name and description, and media url from the JSON response.
                 LaunchItem launch = new LaunchItem(launchName, netTimeStamp, textTimeStamp, locationName,
                         missionName, missionDescription, firstMediaLink, rocketImageUrl, padLatitude,
-                        padLongitude, padName, launchStatus, launchWindowOpen, launchWindowClose);
+                        padLongitude, padName, launchStatus, launchWindowOpen, launchWindowClose, missionType);
 
                 // Add the new {@link LaunchItem} to the list of launches.
                 launches.add(launch);

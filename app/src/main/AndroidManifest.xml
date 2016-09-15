@@ -20,7 +20,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LaunchDetailActivity">
+        <activity
+            android:name=".LaunchDetailActivity"
+            android:theme="@style/AppThemeDetail"
+            >
 
         </activity>
     </application>

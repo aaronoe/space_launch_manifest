@@ -13,4 +13,6 @@
     <string name="mapDescription">Location of the Launchpad in Google Maps</string>
     <string name="windowStart">Window Start: </string>
     <string name="windowClose">Window Close: </string>
+    <string name="missionDetails">Mission Details</string>
+    <string name="moreInfoButton">More Info</string>
 </resources>

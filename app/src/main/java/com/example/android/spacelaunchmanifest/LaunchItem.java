@@ -52,6 +52,9 @@ public class LaunchItem implements Serializable {
     // unix timestamp of launch window close
     private long mLaunchWindowClose;
 
+    // mission type
+    private String mMissionType;
+
     /**
      * Public constructor method of the LaunchItem Class
       * @param launchName Title of the launch
@@ -63,7 +66,7 @@ public class LaunchItem implements Serializable {
     public LaunchItem(String launchName, long netLaunchDate, String textLaunchDate, String launchLocation,
                       String missionTitle, String missionDescription, String mediaUrl, String rocketImageUrl,
                       double padLatitude, double padLongitude, String launchPadName, int launchStatus,
-                      long launchWindowOpen, long launchWindowClose){
+                      long launchWindowOpen, long launchWindowClose, String missionType){
         mLaunchName = launchName;
         mNetLaunchDate = netLaunchDate;
         mTextLaunchDate = textLaunchDate;
@@ -78,6 +81,7 @@ public class LaunchItem implements Serializable {
         mLaunchStatus = launchStatus;
         mLaunchWindowOpen = launchWindowOpen;
         mLaunchWindowClose = launchWindowClose;
+        mMissionType = missionType;
     }
 
     /**
@@ -190,5 +194,13 @@ public class LaunchItem implements Serializable {
      */
     public long getmLaunchWindowClose() {
         return mLaunchWindowClose;
+    }
+
+    /**
+     *
+     * @return the mission type string
+     */
+    public String getmMissionType() {
+        return mMissionType;
     }
 }

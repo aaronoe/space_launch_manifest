@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    ​
+
+
     <android.support.design.widget.AppBarLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
-        ​
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/detailpage.collapsing"
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             app:expandedTitleMarginEnd="64dp"
             app:layout_scrollFlags="scroll|snap"
             >
-            ​
+
             <ImageView
                 android:id="@+id/detailpage.profile_backdrop"
                 android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                 />
 
         </android.support.design.widget.CollapsingToolbarLayout>
-        ​
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/detailpage.profile_image"
@@ -50,7 +51,7 @@
             app:layout_scrollFlags="scroll"
             android:visibility="invisible"
             />
-        ​
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/detailpage.toolbar"
             android:layout_width="match_parent"
@@ -62,7 +63,7 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             style="@style/ToolBarWithNavigationBack"
             />
-        ​
+
         <LinearLayout
             android:id="@+id/detailpage.title_container"
             android:layout_width="match_parent"
@@ -71,15 +72,14 @@
             android:gravity="center"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             >
-            ​
+
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/detail_page_launch_title"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:text="Ariane Launch Area 3, Kourou"
                 />
-            ​
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,22 +87,21 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
-                android:text="Ariane 5 ECA | Eutelsat 8 West B Intelsat 34"
                 android:textColor="@android:color/white"
                 />
-            ​
+
         </LinearLayout>
-        ​
+
         <android.support.design.widget.TabLayout
             android:id="@+id/detailpage.tabs"
             android:layout_width="fill_parent"
             android:layout_height="?attr/actionBarSize"
-            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabSelectedTextColor="@android:color/white"
             app:tabIndicatorColor="@color/colorAccent"
             app:tabIndicatorHeight="4dp"
             />
     </android.support.design.widget.AppBarLayout>
-    ​
+
     <!-- The top margin value equals half height of the blue box -->
     <android.support.v4.view.ViewPager
         android:id="@+id/detailpage.viewpager"
@@ -110,6 +109,5 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
-    ​
-        ​
+
 </android.support.design.widget.CoordinatorLayout>

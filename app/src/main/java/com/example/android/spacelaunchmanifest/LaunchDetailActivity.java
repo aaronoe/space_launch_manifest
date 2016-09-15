@@ -13,12 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 /**
+ * Detailview contains fragments in tablayout
  * Created by aaron on 9/14/2016.
  */
 public class LaunchDetailActivity extends AppCompatActivity
