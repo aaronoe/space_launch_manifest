@@ -219,12 +219,19 @@ public final class QueryTools {
                 double padLongitude = firstPad.getDouble("longitude");
                 String padName = firstPad.getString("name");
 
+                // Status of the launch - Integer (1 Green, 2 Red, 3 Success, 4 Failed)
+                int launchStatus = currentLaunch.getInt("status");
+
+                // UNIX epoch timestamp for launch window -open and -close
+                long launchWindowOpen = currentLaunch.getLong("wsstamp");
+                long launchWindowClose = currentLaunch.getLong("westamp");
+
 
                 // Create a new {@link LaunchItem} object with the launch-name, timestamp, location
                 // mission name and description, and media url from the JSON response.
                 LaunchItem launch = new LaunchItem(launchName, netTimeStamp, textTimeStamp, locationName,
-                        missionName, missionDescription, firstMediaLink,
-                        rocketImageUrl, padLatitude, padLongitude, padName);
+                        missionName, missionDescription, firstMediaLink, rocketImageUrl, padLatitude,
+                        padLongitude, padName, launchStatus, launchWindowOpen, launchWindowClose);
 
                 // Add the new {@link LaunchItem} to the list of launches.
                 launches.add(launch);

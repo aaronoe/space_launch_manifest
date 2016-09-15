@@ -13,4 +13,7 @@
 
     <!-- Color for an probability between .0 and .2 -->
     <color name="probability1">#4A7BA7</color>
+
+    <color name="successful">#4CAF50</color>
+    <color name="unsuccessful">#F44336</color>
 </resources>

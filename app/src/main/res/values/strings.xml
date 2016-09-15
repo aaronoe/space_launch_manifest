@@ -4,4 +4,5 @@
     <string name="no_internet_connection">No internet connection</string>
     <string name="your_time">Your time:</string>
     <string name="watch_live">Watch Live</string>
+    <string name="est_launch_date">Estimated Launch Date</string>
 </resources>

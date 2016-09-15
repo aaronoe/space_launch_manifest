@@ -145,7 +145,6 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
             watchLiveButton.setVisibility(View.GONE);
         }
 
-        // TODO: More info button
         Button moreInfoButton = (Button) listItemView.findViewById(R.id.more_info_button);
 
         moreInfoButton.setOnClickListener(new View.OnClickListener() {

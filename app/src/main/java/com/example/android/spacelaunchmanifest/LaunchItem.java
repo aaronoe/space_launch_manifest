@@ -43,6 +43,15 @@ public class LaunchItem implements Serializable {
     // name of the launch pad
     private String mLaunchPadName;
 
+    // status of the launch - Integer (1 Green, 2 Red, 3 Success, 4 Failed)
+    private int mLaunchStatus;
+
+    // unix timestamp of launch window open
+    private long mLaunchWindowOpen;
+
+    // unix timestamp of launch window close
+    private long mLaunchWindowClose;
+
     /**
      * Public constructor method of the LaunchItem Class
       * @param launchName Title of the launch
@@ -53,7 +62,8 @@ public class LaunchItem implements Serializable {
      */
     public LaunchItem(String launchName, long netLaunchDate, String textLaunchDate, String launchLocation,
                       String missionTitle, String missionDescription, String mediaUrl, String rocketImageUrl,
-                      double padLatitude, double padLongitude, String launchPadName){
+                      double padLatitude, double padLongitude, String launchPadName, int launchStatus,
+                      long launchWindowOpen, long launchWindowClose){
         mLaunchName = launchName;
         mNetLaunchDate = netLaunchDate;
         mTextLaunchDate = textLaunchDate;
@@ -65,6 +75,9 @@ public class LaunchItem implements Serializable {
         mLaunchPadLatitude = padLatitude;
         mLaunchPadLongitude = padLongitude;
         mLaunchPadName = launchPadName;
+        mLaunchStatus = launchStatus;
+        mLaunchWindowOpen = launchWindowOpen;
+        mLaunchWindowClose = launchWindowClose;
     }
 
     /**
@@ -153,5 +166,29 @@ public class LaunchItem implements Serializable {
      */
     public String getmLaunchPadName() {
         return mLaunchPadName;
+    }
+
+    /**
+     *
+     * @return the status of the launch
+     */
+    public int getmLaunchStatus() {
+        return mLaunchStatus;
+    }
+
+    /**
+     *
+     * @return unix timestamp of start of launch window
+     */
+    public long getmLaunchWindowOpen() {
+        return mLaunchWindowOpen;
+    }
+
+    /**
+     *
+     * @return unix timestamp of close of launch window
+     */
+    public long getmLaunchWindowClose() {
+        return mLaunchWindowClose;
     }
 }

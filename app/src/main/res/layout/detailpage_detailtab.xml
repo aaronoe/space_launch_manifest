@@ -36,6 +36,7 @@
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textStyle="bold"
                 android:layout_margin="4dp"
+                android:paddingTop="8dp"
                 android:text="Status"
                 android:layout_gravity="center_horizontal" />
 
@@ -44,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:textAppearanceMedium"                android:layout_marginBottom="8dp"
                 android:layout_gravity="center_horizontal"
+                android:id="@+id/launch_status"
                 tools:text="Launch is GO" />
 
 
@@ -86,7 +88,7 @@
 
 
                 <TextView
-                    android:id="@+id/detail_est_launch_date"
+                    android:id="@+id/string_est_launch_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -94,7 +96,7 @@
                     android:layout_below="@+id/detail_divider"
                     android:textColor="@color/textColorLaunchLocation"
                     android:textSize="20sp"
-                    tools:text="Estimated Launch Date" />
+                    android:text="@string/est_launch_date" />
 
             </RelativeLayout>
 
@@ -103,14 +105,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:layout_below="@+id/detail_est_launch_date"
+                android:layout_below="@+id/string_est_launch_date"
                 android:layout_gravity="center_horizontal"
                 tools:text="September 15, 2016"
-                android:id="@+id/lone_mission_description" />
+                android:id="@+id/full_launch_date" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/detail_window_open"
                 android:layout_marginTop="22dp"
                 android:layout_marginLeft="16dp"
                 tools:text="Window Start: 07:04 AM PDT"/>
@@ -118,8 +121,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/detail_window_close"
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
                 tools:text="Window Close: 09:32 AM PDT"/>
 
 
@@ -128,13 +133,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/watch_live"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:textAllCaps="false"
-                android:visibility="visible"/>
+                android:visibility="gone"/>
 
         </LinearLayout>
 
