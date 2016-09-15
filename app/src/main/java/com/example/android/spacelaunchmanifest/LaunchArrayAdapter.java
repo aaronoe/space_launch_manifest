@@ -49,7 +49,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
 
     /**
      * Helper method to convert UNIX epoch time to date
-     * @param dateObject
+     * @param dateObject for converting
      * @return a formatted date like "Tue, Feb 17, 2015"
      */
     private String formatDate(Date dateObject){
@@ -178,7 +178,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
 
         String locationUrl =
                 "http://maps.google.com/maps/api/staticmap?center=" +latitude + "," + longitude +
-                        "&zoom=8" +
+                        "&zoom=4" +
                         "&scale=2" +
                         "&size=375x195" +
                         "&sensor=false" +

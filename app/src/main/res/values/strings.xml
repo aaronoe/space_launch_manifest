@@ -5,4 +5,12 @@
     <string name="your_time">Your time:</string>
     <string name="watch_live">Watch Live</string>
     <string name="est_launch_date">Estimated Launch Date</string>
+    <string name="launch_is_go">Launch is GO</string>
+    <string name="launch_is_no_go">Launch is NO GO</string>
+    <string name="launch_success">Launch successful</string>
+    <string name="launch_failed">Launch failed</string>
+    <string name="detail_status">Status</string>
+    <string name="mapDescription">Location of the Launchpad in Google Maps</string>
+    <string name="windowStart">Window Start: </string>
+    <string name="windowClose">Window Close: </string>
 </resources>

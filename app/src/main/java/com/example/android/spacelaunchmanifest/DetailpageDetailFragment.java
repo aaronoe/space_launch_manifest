@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
+ * Fragment to display additional info on the launch
  * Created by aaron on 9/14/2016.
  */
 public class DetailpageDetailFragment extends Fragment {
@@ -32,7 +34,7 @@ public class DetailpageDetailFragment extends Fragment {
 
     /**
      * Helper method to convert UNIX epoch time to date
-     * @param dateObject
+     * @param dateObject of the launch
      * @return a formatted date
      */
     private String formatNetLaunchDate(Date dateObject){
@@ -69,20 +71,20 @@ public class DetailpageDetailFragment extends Fragment {
 
        switch(launchStatus){
            case 1:
-               launchStatusTextView.setText("Launch is GO");
-               launchStatusTextView.setTextColor(getResources().getColor(R.color.successful));
+               launchStatusTextView.setText(R.string.launch_is_go);
+               launchStatusTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.successful));
                break;
            case 2:
-               launchStatusTextView.setText("Launch is NO GO");
-               launchStatusTextView.setTextColor(getResources().getColor(R.color.unsuccessful));
+               launchStatusTextView.setText(R.string.launch_is_no_go);
+               launchStatusTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.unsuccessful));
                break;
            case 3:
-               launchStatusTextView.setText("Launch Success");
-               launchStatusTextView.setTextColor(getResources().getColor(R.color.successful));
+               launchStatusTextView.setText(R.string.launch_success);
+               launchStatusTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.successful));
                break;
            case 4:
-               launchStatusTextView.setText("Launch failed");
-               launchStatusTextView.setTextColor(getResources().getColor(R.color.unsuccessful));
+               launchStatusTextView.setText(R.string.launch_failed);
+               launchStatusTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.unsuccessful));
                break;
        }
 
@@ -97,8 +99,8 @@ public class DetailpageDetailFragment extends Fragment {
        String locationUrl =
                "http://maps.google.com/maps/api/staticmap?center=" +latitude + "," + longitude +
                        "&zoom=8" +
-                       "&scale=2" +
-                       "&size=375x195" +
+                       "&scale=1" +
+                       "&size=500x320" +
                        "&sensor=false" +
                        "&maptype=hybrid" +
                        "&markers=color:red%7Clabel:%7C" +latitude +"," +longitude;
@@ -149,8 +151,8 @@ public class DetailpageDetailFragment extends Fragment {
        TextView detailLaunchWindowOpen = (TextView) rootView.findViewById(R.id.detail_window_open);
        TextView detailLaunchWindowClose = (TextView) rootView.findViewById(R.id.detail_window_close);
 
-       detailLaunchWindowOpen.setText("Window Start: " + formatWindowTime(launchWindowStart));
-       detailLaunchWindowClose.setText("Window Close: " + formatWindowTime(launchWindowClose));
+       detailLaunchWindowOpen.setText(R.string.windowStart + formatWindowTime(launchWindowStart));
+       detailLaunchWindowClose.setText(R.string.windowClose + formatWindowTime(launchWindowClose));
 
        // ----------------------------------------------------------
        // Watch Live Button

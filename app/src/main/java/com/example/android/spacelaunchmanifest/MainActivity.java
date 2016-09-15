@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // data set. This will trigger the ListView to update.
         if (launches != null && !launches.isEmpty()) {
             mAdapter.addAll(launches);
+            getLoaderManager().destroyLoader(loader.getId());
         }
     }
 
