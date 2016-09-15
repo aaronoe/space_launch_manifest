@@ -128,7 +128,7 @@
                 android:id="@+id/detail_window_close"
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
                 tools:text="Window Close: 09:32 AM PDT"/>
 

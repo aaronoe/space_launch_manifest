@@ -151,8 +151,8 @@ public class DetailpageDetailFragment extends Fragment {
        TextView detailLaunchWindowOpen = (TextView) rootView.findViewById(R.id.detail_window_open);
        TextView detailLaunchWindowClose = (TextView) rootView.findViewById(R.id.detail_window_close);
 
-       detailLaunchWindowOpen.setText(R.string.windowStart + formatWindowTime(launchWindowStart));
-       detailLaunchWindowClose.setText(R.string.windowClose + formatWindowTime(launchWindowClose));
+       detailLaunchWindowOpen.setText("Window Start: " + formatWindowTime(launchWindowStart));
+       detailLaunchWindowClose.setText("Window Close: " + formatWindowTime(launchWindowClose));
 
        // ----------------------------------------------------------
        // Watch Live Button
