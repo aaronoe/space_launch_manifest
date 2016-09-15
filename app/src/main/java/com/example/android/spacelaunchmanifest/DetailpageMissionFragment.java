@@ -11,6 +11,8 @@ import android.view.ViewGroup;
  */
 public class DetailpageMissionFragment extends Fragment {
 
+    LaunchItem mCurrentLaunch;
+
     public DetailpageMissionFragment(){
         // required empty constructor
     }
@@ -20,10 +22,19 @@ public class DetailpageMissionFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.detailpage_mission, container, false);
 
+        mCurrentLaunch = (LaunchItem) getArguments().getSerializable("thisLaunch");
+
         return rootView;
     }
 
-    public static Fragment newInstance() {
-        return new DetailpageMissionFragment();
+    public static Fragment newInstance(LaunchItem mCurrentLaunch) {
+
+        DetailpageMissionFragment myDetailMissionFragment = new DetailpageMissionFragment();
+
+        Bundle launch = new Bundle();
+        launch.putSerializable("thisLaunch", mCurrentLaunch);
+        myDetailMissionFragment.setArguments(launch);
+
+        return myDetailMissionFragment;
     }
 }

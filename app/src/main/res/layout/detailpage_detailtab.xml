@@ -53,7 +53,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:id="@+id/map_picture_view"
+                    android:id="@+id/detail_map_picture_view"
                     android:layout_height="180dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/placeholder_480"/>
@@ -63,7 +63,7 @@
                     android:id="@+id/fab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/map_picture_view"
+                    android:layout_alignBottom="@id/detail_map_picture_view"
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="-26dp"
                     android:layout_marginRight="20dp"
@@ -79,7 +79,7 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_below="@+id/map_picture_view"
+                    android:layout_below="@+id/detail_map_picture_view"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray">
                 </View>

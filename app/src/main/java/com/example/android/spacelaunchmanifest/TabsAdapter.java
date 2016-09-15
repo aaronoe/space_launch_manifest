@@ -11,8 +11,9 @@ class TabsAdapter extends FragmentPagerAdapter {
 
     LaunchItem mCurrentLaunchItem;
 
-    public TabsAdapter(FragmentManager fm) {
+    public TabsAdapter(FragmentManager fm, LaunchItem currentLaunch) {
         super(fm);
+        mCurrentLaunchItem = currentLaunch;
     }
 
     @Override
@@ -23,8 +24,8 @@ class TabsAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
         switch(i) {
-            case 0: return DetailpageDetailFragment.newInstance();
-            case 1: return DetailpageMissionFragment.newInstance();
+            case 0: return DetailpageDetailFragment.newInstance(mCurrentLaunchItem);
+            case 1: return DetailpageMissionFragment.newInstance(mCurrentLaunchItem);
         }
         return null;
     }

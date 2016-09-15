@@ -14,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by aaron on 9/14/2016.
@@ -49,12 +52,29 @@ public class LaunchDetailActivity extends AppCompatActivity
         appbarLayout.addOnOffsetChangedListener(this);
         mMaxScrollSize = appbarLayout.getTotalScrollRange();
 
-        viewPager.setAdapter(new TabsAdapter(getSupportFragmentManager()));
-        tabLayout.setupWithViewPager(viewPager);
 
         Intent i = getIntent();
         LaunchItem currentLaunchItem = (LaunchItem) i.getSerializableExtra("currentLaunchItem");
-        Log.e("Current launch name:", currentLaunchItem.getmLaunchName());
+
+
+        TextView mLaunchTitleTextView = (TextView) findViewById(R.id.detail_page_launch_title);
+        mLaunchTitleTextView.setText(currentLaunchItem.getmLaunchName());
+
+        TextView mLaunchPadLocationTextView = (TextView) findViewById(R.id.detail_page_launchpad_location);
+        mLaunchPadLocationTextView.setText(currentLaunchItem.getmLaunchLocation());
+
+        ImageView mDetailBigImageView = (ImageView) findViewById(R.id.detailpage_profile_backdrop);
+
+        // get Launch preview picture url
+        String currentImageURl = currentLaunchItem.getmRocketImageUrl();
+        String smallerImageUrl = currentImageURl.replace("2560", "640");
+        smallerImageUrl = smallerImageUrl.replace("1920", "640");
+
+        Picasso.with(tabLayout.getContext()).load(smallerImageUrl).into(mDetailBigImageView);
+
+
+        viewPager.setAdapter(new TabsAdapter(getSupportFragmentManager(), currentLaunchItem));
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
