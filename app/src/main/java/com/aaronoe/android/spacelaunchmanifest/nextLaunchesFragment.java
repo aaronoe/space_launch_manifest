@@ -1,25 +1,30 @@
 package com.aaronoe.android.spacelaunchmanifest;
 
+
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<LaunchItem>> {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class nextLaunchesFragment extends android.app.Fragment implements LoaderManager.LoaderCallbacks<List<LaunchItem>> {
 
     private LaunchArrayAdapter mAdapter;
 
@@ -33,34 +38,36 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    View rootView;
+
+
+    public nextLaunchesFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.upcoming_launches_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.upcoming_launches_list, container, false);
 
         // Find a reference to the {@link ListView} in the layout
-        ListView launchListView = (ListView) findViewById(R.id.list);
+        ListView launchListView = (ListView) rootView.findViewById(R.id.list);
 
-
-        // Create a new adapter that takes an empty list of earthquakes as input
-        mAdapter = new LaunchArrayAdapter(this, new ArrayList<LaunchItem>());
+        mAdapter = new LaunchArrayAdapter(getActivity(), new ArrayList<LaunchItem>());
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         launchListView.setAdapter(mAdapter);
 
         // find empty TextView and set it to List Empty State
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_state_textview);
+        mEmptyStateTextView = (TextView) rootView.findViewById(R.id.empty_state_textview);
         launchListView.setEmptyView(mEmptyStateTextView);
 
-
-        // Get a reference to the LoaderManager, in order to interact with loaders.
         final LoaderManager loaderManager = getLoaderManager();
 
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
 
         if (networkInfo != null && networkInfo.isConnected()) {
             // fetch data
@@ -69,35 +76,33 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
             // because this activity implements the LoaderCallbacks interface).
             Log.e(LOG_TAG, "Init loader");
-            loaderManager.initLoader(LAUNCH_LOADER_ID, null, this);
-
+            loaderManager.initLoader(LAUNCH_LOADER_ID, null, this); // maybe getContext
         } else {
             // display error
             mEmptyStateTextView.setText(R.string.no_internet_connection);
 
-            ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
+            ProgressBar mLoadingBar = (ProgressBar) rootView.findViewById(R.id.loading_spinner);
             mLoadingBar.setVisibility(View.GONE);
         }
 
-        final LoaderManager.LoaderCallbacks lC = this;
+        final LoaderManager.LoaderCallbacks lc = this;
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.activity_main_swipe_refresh_layout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loaderManager.restartLoader(LAUNCH_LOADER_ID, null, lC);
-                mSwipeRefreshLayout.setRefreshing(false);
+                loaderManager.restartLoader(LAUNCH_LOADER_ID, null, lc);
             }
         });
 
+        return rootView;
     }
 
     @Override
     public Loader<List<LaunchItem>> onCreateLoader(int i, Bundle bundle) {
-
         // Create a new loader for the given URL
         Log.e(LOG_TAG, "OnCreate Loader");
-        return new LaunchAsyncTaskLoader(this, LL_REQUEST_URL);
+        return new LaunchAsyncTaskLoader(getActivity(), LL_REQUEST_URL);
     }
 
     @Override
@@ -106,24 +111,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mEmptyStateTextView.setText(R.string.no_launches_found);
 
-        ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
+        ProgressBar mLoadingBar = (ProgressBar) rootView.findViewById(R.id.loading_spinner);
         mLoadingBar.setVisibility(View.GONE);
 
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
 
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
         if (launches != null && !launches.isEmpty()) {
             mAdapter.addAll(launches);
-            getLoaderManager().destroyLoader(loader.getId());
+            getLoaderManager().destroyLoader(getId());
         }
     }
 
     @Override
     public void onLoaderReset(Loader<List<LaunchItem>> loader) {
-        // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
     }
-
 }
