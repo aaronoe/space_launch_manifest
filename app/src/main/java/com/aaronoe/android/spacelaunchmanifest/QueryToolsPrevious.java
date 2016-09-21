@@ -19,23 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Methods to query the launchlibrary service and return a list of launches
- * Created by aaron on 9/12/2016.
+ * Created by aaron on 9/20/2016.
  */
-public final class QueryTools {
+public class QueryToolsPrevious {
 
     /** Tag for the log messages */
-    public static final String LOG_TAG = QueryTools.class.getSimpleName();
-
+    public static final String LOG_TAG = QueryToolsPrevious.class.getSimpleName();
 
     /**
-     * Create a private constructor because no one should ever create a {@link QueryTools} object.
-     * This class is only meant to hold static variables and methods, which can be accessed
-     * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
+     * Public empty constructor
      */
-    public QueryTools(){
-    }
-
+    public QueryToolsPrevious(){}
 
     /**
      * Query the launchlibrary dataset and return a list of {@link LaunchItem} object to represent the launches.
@@ -163,7 +157,7 @@ public final class QueryTools {
 
 
             // For each LaunchItem in the launchArray, create an {@link LaunchItem} object
-            for (int i = 0; i < baseLaunchList.length(); i++) {
+            for (int i = baseLaunchList.length() - 1; i >= 0; i--) {
 
                 // Get a single launch at position i within the list of launches
                 JSONObject currentLaunch = baseLaunchList.getJSONObject(i);
@@ -259,6 +253,5 @@ public final class QueryTools {
         // Return the list of launches
         return launches;
     }
-
 
 }

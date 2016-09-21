@@ -35,8 +35,13 @@ public class LaunchAsyncTaskLoader extends AsyncTaskLoader<List<LaunchItem>> {
             return null;
         }
 
+        List<LaunchItem> launches;
         // Perform the network request, parse the response, and extract a list of launches.
-        List<LaunchItem> launches = QueryTools.fetchLaunchData(mUrl);
+        if (mUrl.contains("next")) {
+            launches = QueryTools.fetchLaunchData(mUrl);
+        } else {
+            launches = QueryToolsPrevious.fetchLaunchData(mUrl);
+        }
         return launches;
     }
 }

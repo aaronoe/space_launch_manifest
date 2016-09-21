@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     // For rest of the options we just show a toast on click
 
                     case R.id.previousLaunches:
+                        previousLaunchesFragment prevFragment = new previousLaunchesFragment();
+                        FragmentTransaction fragmentTransactionPrev = getFragmentManager().beginTransaction();
+                        fragmentTransactionPrev.replace(R.id.frame, prevFragment);
+                        fragmentTransactionPrev.commit();
                         Toast.makeText(getApplicationContext(),"Previous Launches Selected",Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.missions:
