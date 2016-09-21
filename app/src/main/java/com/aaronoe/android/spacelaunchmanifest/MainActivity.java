@@ -1,129 +1,140 @@
 package com.aaronoe.android.spacelaunchmanifest;
 
-import android.app.LoaderManager;
-import android.content.Context;
-import android.content.Loader;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.support.v4.widget.SwipeRefreshLayout;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AppCompatActivity {
 
-
-
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<LaunchItem>> {
-
-    private LaunchArrayAdapter mAdapter;
-
-    public static final String LOG_TAG = MainActivity.class.getName();
-
-    private static final int LAUNCH_LOADER_ID = 1;
-
-    private static final String LL_REQUEST_URL = "https://launchlibrary.net/1.2/launch/next/10";
-
-    private TextView mEmptyStateTextView;
-
-    SwipeRefreshLayout mSwipeRefreshLayout;
-
+    //Defining Variables
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.upcoming_launches_list);
+        setContentView(R.layout.drawer_menu);
 
-        // Find a reference to the {@link ListView} in the layout
-        ListView launchListView = (ListView) findViewById(R.id.list);
+        FragmentTransaction tx =
+                getFragmentManager().beginTransaction();
+        tx.replace(R.id.frame, new nextLaunchesFragment());
+        tx.commit();
 
+        // Initializing Toolbar and setting it as the actionbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // Create a new adapter that takes an empty list of earthquakes as input
-        mAdapter = new LaunchArrayAdapter(this, new ArrayList<LaunchItem>());
+        //Initializing NavigationView
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-        // Set the adapter on the {@link ListView}
-        // so the list can be populated in the user interface
-        launchListView.setAdapter(mAdapter);
+        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-        // find empty TextView and set it to List Empty State
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_state_textview);
-        launchListView.setEmptyView(mEmptyStateTextView);
-
-
-        // Get a reference to the LoaderManager, in order to interact with loaders.
-        final LoaderManager loaderManager = getLoaderManager();
-
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-
-        if (networkInfo != null && networkInfo.isConnected()) {
-            // fetch data
-
-            // Initialize the loader. Pass in the int ID constant defined above and pass in null for
-            // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
-            // because this activity implements the LoaderCallbacks interface).
-            Log.e(LOG_TAG, "Init loader");
-            loaderManager.initLoader(LAUNCH_LOADER_ID, null, this);
-
-        } else {
-            // display error
-            mEmptyStateTextView.setText(R.string.no_internet_connection);
-
-            ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
-            mLoadingBar.setVisibility(View.GONE);
-        }
-
-        final LoaderManager.LoaderCallbacks lC = this;
-
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            // This method will trigger on item Click of navigation menu
             @Override
-            public void onRefresh() {
-                loaderManager.restartLoader(LAUNCH_LOADER_ID, null, lC);
-                mSwipeRefreshLayout.setRefreshing(false);
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if(menuItem.isChecked()) menuItem.setChecked(false);
+                else menuItem.setChecked(true);
+
+                //Closing drawer on item click
+                drawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()){
+
+
+                    //Replacing the main content with ContentFragment Which is our Inbox View;
+                    case R.id.nextLaunches:
+                        nextLaunchesFragment fragment = new nextLaunchesFragment();
+                        FragmentTransaction fragmentTransaction =
+                                getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.frame, fragment);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    // For rest of the options we just show a toast on click
+
+                    case R.id.previousLaunches:
+                        Toast.makeText(getApplicationContext(),"Previous Launches Selected",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.missions:
+                        Toast.makeText(getApplicationContext(),"Missions Selected",Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                        Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
+                        return true;
+
+                }
             }
         });
 
+        // Initializing Drawer Layout and ActionBarToggle
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle actionBarDrawerToggle =
+                new ActionBarDrawerToggle(this,drawerLayout,toolbar, R.string.openDrawer, R.string.closeDrawer){
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
+
+
     }
 
     @Override
-    public Loader<List<LaunchItem>> onCreateLoader(int i, Bundle bundle) {
-
-        // Create a new loader for the given URL
-        Log.e(LOG_TAG, "OnCreate Loader");
-        return new LaunchAsyncTaskLoader(this, LL_REQUEST_URL);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
-    public void onLoadFinished(Loader<List<LaunchItem>> loader, List<LaunchItem> launches) {
-        Log.e(LOG_TAG, "OnLoadFinished");
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-        mEmptyStateTextView.setText(R.string.no_launches_found);
-
-        ProgressBar mLoadingBar = (ProgressBar) findViewById(R.id.loading_spinner);
-        mLoadingBar.setVisibility(View.GONE);
-
-        // Clear the adapter of previous earthquake data
-        mAdapter.clear();
-
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
-        if (launches != null && !launches.isEmpty()) {
-            mAdapter.addAll(launches);
-            getLoaderManager().destroyLoader(loader.getId());
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
-    }
 
-    @Override
-    public void onLoaderReset(Loader<List<LaunchItem>> loader) {
-        // Loader reset, so we can clear out our existing data.
-        mAdapter.clear();
+        return super.onOptionsItemSelected(item);
     }
-
 }

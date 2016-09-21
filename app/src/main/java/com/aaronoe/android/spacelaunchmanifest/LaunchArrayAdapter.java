@@ -1,8 +1,10 @@
 package com.aaronoe.android.spacelaunchmanifest;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -26,6 +29,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
 
 
     Activity mContext;
+
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
@@ -204,6 +208,10 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
                 getContext().startActivity(intent);
             }
         });
+
+
+        long netLaunchTimeCountdown = currentLaunchItem.getmNetLaunchDate();
+
 
 
         return listItemView;

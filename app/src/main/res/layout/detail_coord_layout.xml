@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -77,6 +78,8 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/detail_page_launch_title"
                 android:layout_height="wrap_content"
+                tools:text="Rokot \/ Briz-KM | Gonets-M24, Gonets-M25, Gonets-M26"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 />
 

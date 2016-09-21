@@ -155,6 +155,157 @@
 
             </RelativeLayout>
 
+            <!--
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/tvevent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:singleLine="true"
+                    android:text="Android Event Start"
+                    android:textColor="@color/textColorLaunchLocation"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/txtTimerDay"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/textColorLaunchLocation"
+                        />
+
+                    <TextView
+                        android:id="@+id/txt_TimerDay"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Days"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/textColorLaunchLocation" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/txtTimerHour"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/textColorLaunchLocation" />
+
+                    <TextView
+                        android:id="@+id/txt_TimerHour"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Hours"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/textColorLaunchLocation" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/txtTimerMinute"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/textColorLaunchLocation" />
+
+                    <TextView
+                        android:id="@+id/txt_TimerMinute"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Minutes"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/textColorLaunchLocation" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/txtTimerSecond"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="00"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/textColorLaunchLocation" />
+
+                    <TextView
+                        android:id="@+id/txt_TimerSecond"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Seconds"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/textColorLaunchLocation" />
+                </LinearLayout>
+            </LinearLayout>
+
+            -->
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

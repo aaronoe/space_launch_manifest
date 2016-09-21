@@ -92,6 +92,7 @@ public class nextLaunchesFragment extends android.app.Fragment implements Loader
             @Override
             public void onRefresh() {
                 loaderManager.restartLoader(LAUNCH_LOADER_ID, null, lc);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
@@ -119,7 +120,7 @@ public class nextLaunchesFragment extends android.app.Fragment implements Loader
 
         if (launches != null && !launches.isEmpty()) {
             mAdapter.addAll(launches);
-            getLoaderManager().destroyLoader(getId());
+            getLoaderManager().destroyLoader(loader.getId());
         }
     }
 
