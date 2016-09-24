@@ -9,3 +9,7 @@ purpose of this app is to teach myself android development. On a different note,
 inspired by https://github.com/caman9119/SpaceLaunchNow.
 
 Even though this app looks very similar to SpaceLaunchNow, I did not copy any code.
+
+## License
+
+This project utilizes the [MIT License](https://github.com/aaronoe/space_launch_manifest/blob/master/LICENSE.md "Project License")
