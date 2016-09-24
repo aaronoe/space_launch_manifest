@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SpaceLaunchManifest.iml" filepath="$PROJECT_DIR$/SpaceLaunchManifest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/space_launch_manifest.iml" filepath="$PROJECT_DIR$/space_launch_manifest.iml" />
     </modules>
   </component>
 </project>

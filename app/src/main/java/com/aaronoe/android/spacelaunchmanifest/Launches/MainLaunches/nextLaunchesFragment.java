@@ -1,4 +1,4 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches;
 
 
 import android.app.LoaderManager;
@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,23 +17,18 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.aaronoe.android.spacelaunchmanifest.LaunchArrayAdapter;
-import com.aaronoe.android.spacelaunchmanifest.LaunchAsyncTaskLoader;
-import com.aaronoe.android.spacelaunchmanifest.LaunchItem;
+
+import com.aaronoe.android.spacelaunchmanifest.Launches.NetworkTools.LaunchAsyncTaskLoader;
 import com.aaronoe.android.spacelaunchmanifest.MainActivity;
 import com.aaronoe.android.spacelaunchmanifest.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class previousLaunchesFragment extends android.app.Fragment implements LoaderManager.LoaderCallbacks<List<LaunchItem>>{
-
-    private TextView mEmptyStateTextView;
-
-    SwipeRefreshLayout mSwipeRefreshLayout;
-
-    View rootView;
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class nextLaunchesFragment extends android.app.Fragment implements LoaderManager.LoaderCallbacks<List<LaunchItem>> {
 
     private LaunchArrayAdapter mAdapter;
 
@@ -40,13 +36,19 @@ public class previousLaunchesFragment extends android.app.Fragment implements Lo
 
     private static final int LAUNCH_LOADER_ID = 1;
 
-    private String ll_request_url;
+    private static final String LL_REQUEST_URL = "https://launchlibrary.net/1.2/launch/next/10";
+
+    private TextView mEmptyStateTextView;
+
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    View rootView;
 
 
-
-    public previousLaunchesFragment(){
-        // necessary public constructor
+    public nextLaunchesFragment() {
+        // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,7 +100,6 @@ public class previousLaunchesFragment extends android.app.Fragment implements Lo
             }
         });
 
-
         return rootView;
     }
 
@@ -106,19 +107,7 @@ public class previousLaunchesFragment extends android.app.Fragment implements Lo
     public Loader<List<LaunchItem>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
         Log.e(LOG_TAG, "OnCreate Loader");
-
-        Long currentTime = System.currentTimeMillis();
-
-        Long twoMonthsInMilliseconds = 5259492000L;
-        Long twoMonthsAgoTime = currentTime - twoMonthsInMilliseconds ;
-
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        String oldDate = dateFormatter.format(twoMonthsAgoTime);
-        String newDate = dateFormatter.format(currentTime);
-
-        ll_request_url = "https://launchlibrary.net/1.2/launch/" + oldDate + "/" + newDate + "/?limit=30";
-
-        return new LaunchAsyncTaskLoader(getActivity(), ll_request_url);
+        return new LaunchAsyncTaskLoader(getActivity(), LL_REQUEST_URL);
     }
 
     @Override

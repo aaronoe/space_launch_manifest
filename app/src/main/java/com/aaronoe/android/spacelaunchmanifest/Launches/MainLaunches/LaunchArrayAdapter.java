@@ -1,10 +1,8 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.aaronoe.android.spacelaunchmanifest.Launches.DetailPage.LaunchDetailActivity;
+import com.aaronoe.android.spacelaunchmanifest.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -187,8 +186,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
                         "&maptype=hybrid" +
                         "&markers=color:red%7Clabel:%7C" +latitude +"," +longitude;
 
-        // show The Image in a ImageView
-        //new DownloadImageTask(currentImageView).execute(locationUrl);
+
 
         Picasso.with(listItemView.getContext()).load(locationUrl).into(currentImageView);
 

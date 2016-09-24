@@ -1,7 +1,9 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.NetworkTools;
 
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches.LaunchItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;

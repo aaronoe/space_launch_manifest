@@ -1,7 +1,9 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.NetworkTools;
 
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches.LaunchItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,11 +50,8 @@ public class QueryToolsPrevious {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link LaunchItem}s
-        List<LaunchItem> launches = extractFeatureFromJson(jsonResponse);
-
         // Return the list of {@link LaunchItem}s
-        return launches;
+        return extractFeatureFromJson(jsonResponse);
     }
 
 
