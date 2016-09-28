@@ -10,6 +10,10 @@ inspired by https://github.com/caman9119/SpaceLaunchNow.
 
 Even though this app looks very similar to SpaceLaunchNow, I did not copy any code.
 
+## Screenshots
+
+![alt text](https://aaronoe.de/img/andr/main.png "Main View") ![alt text](https://aaronoe.de/img/andr/detail.png "Detail View") ![alt text](https://aaronoe.de/img/andr/menu.png "Menu View")
+
 ## License
 
 This project utilizes the [MIT License](https://github.com/aaronoe/space_launch_manifest/blob/master/LICENSE.md "Project License")
