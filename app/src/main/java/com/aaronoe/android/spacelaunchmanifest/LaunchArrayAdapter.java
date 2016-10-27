@@ -182,7 +182,7 @@ public class LaunchArrayAdapter extends ArrayAdapter<LaunchItem> {
                 "http://maps.google.com/maps/api/staticmap?center=" +latitude + "," + longitude +
                         "&zoom=4" +
                         "&scale=2" +
-                        "&size=375x195" +
+                        "&size=450x200" +
                         "&sensor=false" +
                         "&maptype=hybrid" +
                         "&markers=color:red%7Clabel:%7C" +latitude +"," +longitude;

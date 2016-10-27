@@ -185,20 +185,26 @@ public final class QueryTools {
                 // "Vandenberg AFB, CA, USA"
                 String locationName = locationObject.getString("name");
 
+                String missionName = "Mission Name not available";
+                String missionDescription = "Mission Description not available";
+                String missionType = "n/a";
+
                 // get the array which contains information about the mission
                 JSONArray missionsArray = currentLaunch.getJSONArray("missions");
                 // get the first mission object in the array
-                JSONObject firstMission = missionsArray.getJSONObject(0);
-                // get the first mission's name, e.g.:
-                // "WorldView-4"
-                String missionName = firstMission.getString("name");
-                // get the first mission's description, e.g.:
-                // "WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit.
-                // Satellite will provide high-resolution imagery in panchromatic and multispectral modes."
-                String missionDescription = firstMission.getString("description");
-                // get the mission type, e.g.:
-                // "Human Exploration"
-                String missionType = firstMission.getString("typeName");
+                if (missionsArray.length() != 0) {
+                    JSONObject firstMission = missionsArray.getJSONObject(0);
+                    // get the first mission's name, e.g.:
+                    // "WorldView-4"
+                    missionName = firstMission.getString("name");
+                    // get the first mission's description, e.g.:
+                    // "WorldView-4 is a commercial Earth observation satellite to be launched into sun-synchronious orbit.
+                    // Satellite will provide high-resolution imagery in panchromatic and multispectral modes."
+                    missionDescription = firstMission.getString("description");
+                    // get the mission type, e.g.:
+                    // "Human Exploration"
+                    missionType = firstMission.getString("typeName");
+                }
 
                 // get the JSONArray containing media URLs
                 JSONArray mediaArray = currentLaunch.getJSONArray("vidURLs");

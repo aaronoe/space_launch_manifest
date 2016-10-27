@@ -79,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
                         FragmentTransaction fragmentTransactionPrev = getFragmentManager().beginTransaction();
                         fragmentTransactionPrev.replace(R.id.frame, prevFragment);
                         fragmentTransactionPrev.commit();
-                        Toast.makeText(getApplicationContext(),"Previous Launches Selected",Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.missions:
-                        Toast.makeText(getApplicationContext(),"Missions Selected",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Coming soon",Toast.LENGTH_SHORT).show();
                         return true;
                     default:
                         Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();

@@ -25,6 +25,8 @@
     <string name="openDrawer">Navigation View Closed</string>
     <string name="action_settings">Settings</string>
     <string name="byAaronOertel">by Aaron Oertel</string>
+    <string name="missionNameNotAvailable">"Mission Name not available"</string>
+    <string name="missionDescriptionNotAvailable">Mission Description not available</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
