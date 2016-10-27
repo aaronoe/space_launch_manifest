@@ -1,4 +1,4 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.DetailPage;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches.LaunchItem;
+import com.aaronoe.android.spacelaunchmanifest.R;
 
 /**
  * Contains more details about the mission
@@ -77,9 +80,6 @@ public class DetailpageMissionFragment extends Fragment {
 
         TextView rocketFamilyTextView = (TextView) rootView.findViewById(R.id.rocketFamilyTextView);
         rocketFamilyTextView.setText(vehicleFamily);
-
-
-
 
 
 

@@ -1,4 +1,4 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches;
 
 import java.io.Serializable;
 

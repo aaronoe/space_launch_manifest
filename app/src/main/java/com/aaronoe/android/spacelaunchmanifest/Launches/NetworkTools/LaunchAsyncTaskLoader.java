@@ -1,14 +1,18 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.NetworkTools;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
 
+import com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches.LaunchItem;
+
 import java.util.List;
 
 /**
+ *
  * Created by aaron on 9/12/2016.
  */
+
 public class LaunchAsyncTaskLoader extends AsyncTaskLoader<List<LaunchItem>> {
 
     /** Tag for log messages */

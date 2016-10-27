@@ -1,15 +1,18 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.DetailPage;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches.LaunchItem;
+
 /**
+ * Changes fragments in the detail view
  * Created by aaron on 9/14/2016.
  */
 class TabsAdapter extends FragmentPagerAdapter {
 
-    LaunchItem mCurrentLaunchItem;
+    private LaunchItem mCurrentLaunchItem;
 
     public TabsAdapter(FragmentManager fm, LaunchItem currentLaunch) {
         super(fm);

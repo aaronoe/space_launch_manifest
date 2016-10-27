@@ -1,4 +1,4 @@
-package com.aaronoe.android.spacelaunchmanifest;
+package com.aaronoe.android.spacelaunchmanifest.Launches.DetailPage;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches.LaunchItem;
+import com.aaronoe.android.spacelaunchmanifest.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;

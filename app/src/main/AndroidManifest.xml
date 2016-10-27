@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name="com.aaronoe.android.spacelaunchmanifest.LaunchDetailActivity"
+            android:name="com.aaronoe.android.spacelaunchmanifest.Launches.DetailPage.LaunchDetailActivity"
             android:theme="@style/AppThemeDetail"
             >
 
