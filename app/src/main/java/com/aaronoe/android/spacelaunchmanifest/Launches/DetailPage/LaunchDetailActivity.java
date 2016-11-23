@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aaronoe.android.spacelaunchmanifest.Launches.MainLaunches.LaunchItem;
+import com.aaronoe.android.spacelaunchmanifest.MainActivity;
 import com.aaronoe.android.spacelaunchmanifest.R;
 import com.squareup.picasso.Picasso;
 
@@ -28,6 +29,8 @@ public class LaunchDetailActivity extends AppCompatActivity
 
     private ImageView mProfileImage;
     private int mMaxScrollSize;
+    private boolean activityClosed;
+    private Context mContext = this;
 
 
 
@@ -35,6 +38,7 @@ public class LaunchDetailActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_coord_layout);
+        activityClosed = false;
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.detailpage_tabs);
         ViewPager viewPager  = (ViewPager) findViewById(R.id.detailpage_viewpager);
@@ -44,7 +48,11 @@ public class LaunchDetailActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.detailpage_toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                onBackPressed();
+                if (activityClosed) {
+                    mContext.startActivity(new Intent(mContext, MainActivity.class));
+                } else {
+                    onBackPressed();
+                }
             }
         });
 
@@ -79,6 +87,13 @@ public class LaunchDetailActivity extends AppCompatActivity
 
     public static void start(Context c) {
         c.startActivity(new Intent(c, LaunchDetailActivity.class));
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        activityClosed = true;
     }
 
     @Override
